@@ -3,11 +3,14 @@ package org.usfirst.frc.team1939.robot;
 public class RobotMap {
 
 	// PWM
-
+	public static int lifter = 0;
+	
 	// DIO
-
+	public static int lifterLimit = 0;
+	
 	// Analog
 	public static int gyro = 0;
+	public static int pot = 1;
 
 	// CAN
 	public static int talonFrontLeft = 0;
