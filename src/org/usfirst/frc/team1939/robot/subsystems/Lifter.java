@@ -22,14 +22,13 @@ public class Lifter extends PIDSubsystem {
 	private DigitalInput limit = new DigitalInput(RobotMap.lifterLimit);
 	private Encoder encoder = new Encoder(RobotMap.lifterA, RobotMap.lifterB);
 
-	// Initialize your subsystem here
 	public Lifter() {
-		super(P, I, D);
-		encoder.setDistancePerPulse(INCHES_PER_PULSE);
 		// Use these to get going:
 		// setSetpoint() - Sets where the PID controller should move the system
 		// to
 		// enable() - Enables the PID controller.
+		super(P, I, D);
+		encoder.setDistancePerPulse(INCHES_PER_PULSE);
 	}
 
 	public void initDefaultCommand() {
