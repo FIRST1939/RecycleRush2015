@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1939.robot;
 
 import org.usfirst.frc.team1939.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team1939.robot.subsystems.Tail;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -11,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 public class Robot extends IterativeRobot {
 
 	public static final Drivetrain drivetrain = new Drivetrain();
+	public static final Tail tail = new Tail();
 	public static OI oi;
 
 	private SendableChooser chooser;
