@@ -34,6 +34,8 @@ public class Drive extends Command {
 		} else {
 			timeSettled = 0;
 		}
+		Robot.drivetrain.drive(0, Robot.drivetrain.movePID.get(),
+				Robot.drivetrain.rotatePID.get());
 	}
 
 	protected boolean isFinished() {
