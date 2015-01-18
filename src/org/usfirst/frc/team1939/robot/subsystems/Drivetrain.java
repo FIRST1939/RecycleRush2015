@@ -97,7 +97,10 @@ public class Drivetrain extends Subsystem {
 	private static final double rotateD = 0;
 	private PIDSource rotateSource = new PIDSource() {
 		public double pidGet() {
-			return gyro.getAngle();
+			return ((frontLeftEncoder.getDistance() + rearLeftEncoder
+					.getDistance()) / 2)
+					- ((frontRightEncoder.getDistance() + rearRightEncoder
+							.getDistance()) / 2);
 		}
 	};
 	private PIDOutput rotateOutput = new PIDOutput() {
