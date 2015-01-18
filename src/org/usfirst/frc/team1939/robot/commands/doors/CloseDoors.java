@@ -15,6 +15,12 @@ public class CloseDoors extends Command {
 	}
 
 	protected void execute() {
+		if (Robot.doors.leftClosed()) {
+			Robot.doors.stopLeft();
+		}
+		if (Robot.doors.rightClosed()) {
+			Robot.doors.stopRight();
+		}
 	}
 
 	protected boolean isFinished() {

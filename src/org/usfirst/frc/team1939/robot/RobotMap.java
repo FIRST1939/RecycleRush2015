@@ -7,8 +7,10 @@ public class RobotMap {
 	public static int doorsRight = 0;
 
 	// DIO
-	public static int doorsOpen = 0;
-	public static int doorsClosed = 0;
+	public static int doorsLeftOpen = 0;
+	public static int doorsLeftClosed = 0;
+	public static int doorsRightOpen = 0;
+	public static int doorsRightClosed = 0;
 
 	// Analog
 	public static int gyro = 0;

@@ -13,12 +13,13 @@ public class Doors extends Subsystem {
 	private Talon right = new Talon(RobotMap.doorsRight);
 	private Talon left = new Talon(RobotMap.doorsLeft);
 
-	private DigitalInput open = new DigitalInput(RobotMap.doorsOpen);
-	private DigitalInput closed = new DigitalInput(RobotMap.doorsClosed);
+	private DigitalInput leftOpen = new DigitalInput(RobotMap.doorsLeftOpen);
+	private DigitalInput leftClosed = new DigitalInput(RobotMap.doorsLeftClosed);
+	private DigitalInput rightOpen = new DigitalInput(RobotMap.doorsRightOpen);
+	private DigitalInput rightClosed = new DigitalInput(
+			RobotMap.doorsRightClosed);
 
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
 	}
 
 	public void spinOpen() {
@@ -32,15 +33,39 @@ public class Doors extends Subsystem {
 	}
 
 	public void stop() {
-		right.set(0);
+		this.stopLeft();
+		this.stopRight();
+	}
+
+	public void stopLeft() {
 		left.set(0);
 	}
 
+	public void stopRight() {
+		right.set(0);
+	}
+
+	public boolean leftOpen() {
+		return leftOpen.get();
+	}
+
+	public boolean leftClosed() {
+		return leftClosed.get();
+	}
+
+	public boolean rightOpen() {
+		return rightOpen.get();
+	}
+
+	public boolean rightClosed() {
+		return rightClosed.get();
+	}
+
 	public boolean areOpen() {
-		return open.get();
+		return leftOpen() && rightOpen();
 	}
 
 	public boolean areClosed() {
-		return closed.get();
+		return leftClosed() && rightClosed();
 	}
 }
