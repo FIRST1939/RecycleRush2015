@@ -6,17 +6,19 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 public class Lifter extends PIDSubsystem {
 
 	public static final double UP = 1.0;
 	public static final double DOWN = -UP;
 
-	private static final double P = 0;
+	private static final double P = -1;
 	private static final double I = 0;
 	private static final double D = 0;
 
-	private static final double INCHES_PER_PULSE = 1000;
+	private static final double INCHES_PER_REVOLUTION = 2;
+	private static final double PULSES_PER_REVOLUTION = 360;
 
 	private Talon motor = new Talon(RobotMap.lifterMotor);
 	private DigitalInput limit = new DigitalInput(RobotMap.lifterLimit);
@@ -28,7 +30,12 @@ public class Lifter extends PIDSubsystem {
 		// to
 		// enable() - Enables the PID controller.
 		super(P, I, D);
-		encoder.setDistancePerPulse(INCHES_PER_PULSE);
+		this.setOutputRange(-1, 1);
+		encoder.setDistancePerPulse(INCHES_PER_REVOLUTION
+				/ PULSES_PER_REVOLUTION);
+
+		LiveWindow.addActuator("Horn", "PID", this.getPIDController());
+		LiveWindow.addSensor("Horn", "Encoder", encoder);
 	}
 
 	public void initDefaultCommand() {
