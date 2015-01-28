@@ -2,9 +2,8 @@ package org.usfirst.frc.team1939.robot.subsystems;
 
 import org.usfirst.frc.team1939.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -20,9 +19,10 @@ public class Lifter extends PIDSubsystem {
 	private static final double INCHES_PER_REVOLUTION = 2;
 	private static final double PULSES_PER_REVOLUTION = 360;
 
-	private Talon motor = new Talon(RobotMap.lifterMotor);
-	private DigitalInput limit = new DigitalInput(RobotMap.lifterLimit);
-	private Encoder encoder = new Encoder(RobotMap.lifterA, RobotMap.lifterB);
+	private CANTalon left = new CANTalon(RobotMap.talonLifterLeft);
+	private CANTalon right = new CANTalon(RobotMap.talonLifterRight);
+	private DigitalInput top = new DigitalInput(RobotMap.lifterTop);
+	private DigitalInput bottom = new DigitalInput(RobotMap.lifterBottom);
 
 	public Lifter() {
 		// Use these to get going:
@@ -31,11 +31,8 @@ public class Lifter extends PIDSubsystem {
 		// enable() - Enables the PID controller.
 		super(P, I, D);
 		this.setOutputRange(-1, 1);
-		encoder.setDistancePerPulse(INCHES_PER_REVOLUTION
-				/ PULSES_PER_REVOLUTION);
 
 		LiveWindow.addActuator("Horn", "PID", this.getPIDController());
-		LiveWindow.addSensor("Horn", "Encoder", encoder);
 	}
 
 	public void initDefaultCommand() {
@@ -47,24 +44,29 @@ public class Lifter extends PIDSubsystem {
 		// Return your input value for the PID loop
 		// e.g. a sensor, like a potentiometer:
 		// yourPot.getAverageVoltage() / kYourMaxVoltage;
-		return encoder.getDistance();
+		return left.getPosition();
 	}
 
 	protected void usePIDOutput(double output) {
 		// Use output to drive your system, like a motor
 		// e.g. yourMotor.set(output);
-		motor.set(output);
+		this.setSpeed(output);
 	}
 
 	public void setSpeed(double speed) {
-		motor.set(speed);
+		left.set(speed);
+		right.set(speed);
+	}
+
+	public boolean isAtTop() {
+		return top.get();
 	}
 
 	public boolean isAtBottom() {
-		return limit.get();
+		return bottom.get();
 	}
 
 	public void resetEncoder() {
-		encoder.reset();
+		left.setPosition(0);
 	}
 }
