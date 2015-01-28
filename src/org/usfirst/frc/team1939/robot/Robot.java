@@ -2,6 +2,7 @@ package org.usfirst.frc.team1939.robot;
 
 import org.usfirst.frc.team1939.robot.subsystems.Doors;
 import org.usfirst.frc.team1939.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team1939.robot.subsystems.Lifter;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -12,7 +13,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 public class Robot extends IterativeRobot {
 
 	public static final Drivetrain drivetrain = new Drivetrain();
+<<<<<<< HEAD
 	public static final Doors doors = new Doors();
+=======
+	public static final Lifter lifter = new Lifter();
+>>>>>>> lifter
 	public static OI oi;
 
 	private SendableChooser chooser;
