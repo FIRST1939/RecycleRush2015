@@ -1,31 +1,32 @@
 package org.usfirst.frc.team1939.robot.commands.lifter;
 
 import org.usfirst.frc.team1939.robot.Robot;
-import org.usfirst.frc.team1939.robot.subsystems.Lifter;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class ResetLifter extends Command {
+public class LifterTester extends Command {
 
-	public ResetLifter() {
+	public LifterTester() {
 		requires(Robot.lifter);
 	}
 
 	protected void initialize() {
+		SmartDashboard.putNumber("Speed", 0);
 		Robot.lifter.throttleMode();
-		Robot.lifter.enable();
-		Robot.lifter.setSpeed(Lifter.DOWN);
+		Robot.lifter.enable(); // Robot.lifter.enableControl();
 	}
 
 	protected void execute() {
+		Robot.lifter.setSpeed(SmartDashboard.getNumber("Speed"));
+		SmartDashboard.putNumber("Encoder", Robot.lifter.getPosition());
 	}
 
 	protected boolean isFinished() {
-		return Robot.lifter.isDown();
+		return false;
 	}
 
 	protected void end() {
-		Robot.lifter.resetEncoder();
 		Robot.lifter.setSpeed(0);
 		Robot.lifter.disable();
 	}

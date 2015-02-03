@@ -13,8 +13,10 @@ public class RobotMap {
 	public static int doorsLeftClosed = 1;
 	public static int doorsRightOpen = 2;
 	public static int doorsRightClosed = 3;
-	public static int lifterTop = 4;
-	public static int lifterBottom = 5;
+	public static int lifterUp = 4;
+	public static int lifterDown = 5;
+	public static int tailUp = 6;
+	public static int tailDown = 7;
 
 	// Analog
 	public static int gyro = 0;

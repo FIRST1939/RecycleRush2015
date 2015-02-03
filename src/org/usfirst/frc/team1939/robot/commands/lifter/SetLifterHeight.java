@@ -18,12 +18,13 @@ public class SetLifterHeight extends Command {
 	}
 
 	protected void initialize() {
+		Robot.lifter.positionMode();
 		Robot.lifter.enable();
-		Robot.lifter.setSetpoint(height);
+		Robot.lifter.setPosition(height);
 	}
 
 	protected void execute() {
-		if (Math.abs(Robot.lifter.getPosition() - Robot.lifter.getSetpoint()) <= MARGIN) {
+		if (Math.abs(Robot.lifter.getPosition() - Robot.lifter.getPosition()) <= MARGIN) {
 			timeSettled = System.currentTimeMillis();
 		} else {
 			timeSettled = 0;

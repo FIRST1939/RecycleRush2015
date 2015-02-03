@@ -1,5 +1,10 @@
 package org.usfirst.frc.team1939.robot;
 
+import org.usfirst.frc.team1939.robot.commands.doors.CloseDoors;
+import org.usfirst.frc.team1939.robot.commands.doors.OpenDoors;
+import org.usfirst.frc.team1939.robot.commands.drivetrain.ResetGyro;
+import org.usfirst.frc.team1939.robot.commands.lifter.LifterTester;
+import org.usfirst.frc.team1939.robot.commands.lifter.ResetLifter;
 import org.usfirst.frc.team1939.robot.subsystems.Doors;
 import org.usfirst.frc.team1939.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1939.robot.subsystems.Lifter;
@@ -10,6 +15,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 
@@ -24,6 +30,11 @@ public class Robot extends IterativeRobot {
 	private Command autonomousCommand;
 
 	public void robotInit() {
+		Command[] commands = { new CloseDoors(), new OpenDoors(),
+				new ResetGyro(), new ResetLifter(), new LifterTester() };
+		for (Command c : commands)
+			SmartDashboard.putData(c);
+
 		oi = new OI();
 
 		chooser = new SendableChooser();
