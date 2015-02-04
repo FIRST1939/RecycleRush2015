@@ -1,13 +1,16 @@
 package org.usfirst.frc.team1939.robot;
 
+import org.usfirst.frc.team1939.robot.commands.SpinEverything;
 import org.usfirst.frc.team1939.robot.commands.doors.CloseDoors;
 import org.usfirst.frc.team1939.robot.commands.doors.OpenDoors;
+import org.usfirst.frc.team1939.robot.commands.drivetrain.DrivetrainTester;
 import org.usfirst.frc.team1939.robot.commands.drivetrain.ResetGyro;
 import org.usfirst.frc.team1939.robot.commands.lifter.LifterTester;
 import org.usfirst.frc.team1939.robot.commands.lifter.ResetLifter;
 import org.usfirst.frc.team1939.robot.subsystems.Doors;
 import org.usfirst.frc.team1939.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1939.robot.subsystems.Lifter;
+import org.usfirst.frc.team1939.robot.subsystems.Poker;
 import org.usfirst.frc.team1939.robot.subsystems.Tail;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -23,6 +26,7 @@ public class Robot extends IterativeRobot {
 	public static final Doors doors = new Doors();
 	public static final Lifter lifter = new Lifter();
 	public static final Tail tail = new Tail();
+	public static final Poker poker = new Poker();
 
 	public static OI oi;
 
@@ -31,7 +35,8 @@ public class Robot extends IterativeRobot {
 
 	public void robotInit() {
 		Command[] commands = { new CloseDoors(), new OpenDoors(),
-				new ResetGyro(), new ResetLifter(), new LifterTester() };
+				new ResetGyro(), new ResetLifter(), new LifterTester(),
+				new DrivetrainTester(), new SpinEverything() };
 		for (Command c : commands)
 			SmartDashboard.putData(c);
 

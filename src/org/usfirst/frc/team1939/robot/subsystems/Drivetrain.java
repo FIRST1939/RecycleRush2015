@@ -16,10 +16,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 public class Drivetrain extends Subsystem {
 
-	private CANTalon frontLeft = new CANTalon(RobotMap.talonFrontLeft);
-	private CANTalon rearLeft = new CANTalon(RobotMap.talonRearLeft);
-	private CANTalon frontRight = new CANTalon(RobotMap.talonFrontRight);
-	private CANTalon rearRight = new CANTalon(RobotMap.talonRearRight);
+	public CANTalon frontLeft = new CANTalon(RobotMap.talonFrontLeft);
+	public CANTalon rearLeft = new CANTalon(RobotMap.talonRearLeft);
+	public CANTalon frontRight = new CANTalon(RobotMap.talonFrontRight);
+	public CANTalon rearRight = new CANTalon(RobotMap.talonRearRight);
 	{
 		frontLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		rearLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
@@ -27,8 +27,8 @@ public class Drivetrain extends Subsystem {
 		rearRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 	}
 
-	private static final double INCHES_PER_REVOLUTION = 8.0;
-	private static final double PULSES_PER_REVOLUTION = 360;
+	private static final double INCHES_PER_REVOLUTION = 8.0 * Math.PI;
+	private static final double PULSES_PER_REVOLUTION = 250;
 
 	private RobotDrive robotDrive = new RobotDrive(frontLeft, rearLeft,
 			frontRight, rearRight);
@@ -44,13 +44,12 @@ public class Drivetrain extends Subsystem {
 	private Gyro gyro = new Gyro(RobotMap.gyro);
 
 	private static final double moveMaxSpeed = 0.5;
-	private static final double moveP = 0;
+	private static final double moveP = 0.1;
 	private static final double moveI = 0;
 	private static final double moveD = 0;
 	private PIDSource moveSource = new PIDSource() {
 		public double pidGet() {
-			return (frontLeft.getPosition() + rearLeft.getPosition()
-					+ frontRight.getPosition() + rearRight.getPosition()) / 4;
+			return getForwardDistance();
 		}
 	};
 	private PIDOutput moveOutput = new PIDOutput() {
@@ -91,6 +90,12 @@ public class Drivetrain extends Subsystem {
 
 	public void initDefaultCommand() {
 		setDefaultCommand(new DriveWithJoystick());
+	}
+
+	public double getForwardDistance() {
+		return (frontLeft.getPosition() + rearLeft.getPosition()
+				+ frontRight.getPosition() + rearRight.getPosition())
+				/ 4 / PULSES_PER_REVOLUTION * INCHES_PER_REVOLUTION;
 	}
 
 	public void driveWithGyro(double x, double y, double z, double multi) {

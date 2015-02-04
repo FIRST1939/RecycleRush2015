@@ -5,11 +5,12 @@ import org.usfirst.frc.team1939.robot.RobotMap;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Tail extends Subsystem {
+public class Poker extends Subsystem {
 
-	public CANTalon tail = new CANTalon(RobotMap.talonTail);
+	public CANTalon poker = new CANTalon(RobotMap.talonPoker);
 
-	public void initDefaultCommand() {
+	protected void initDefaultCommand() {
 
 	}
+
 }

@@ -2,16 +2,16 @@ package org.usfirst.frc.team1939.robot.subsystems;
 
 import org.usfirst.frc.team1939.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Doors extends Subsystem {
 
 	private static final double SPEED = 1.0;
 
-	private Talon right = new Talon(RobotMap.doorsRight);
-	private Talon left = new Talon(RobotMap.doorsLeft);
+	public CANTalon right = new CANTalon(RobotMap.talonDoorsRight);
+	public CANTalon left = new CANTalon(RobotMap.talonDoorsLeft);
 
 	private DigitalInput leftOpen = new DigitalInput(RobotMap.doorsLeftOpen);
 	private DigitalInput leftClosed = new DigitalInput(RobotMap.doorsLeftClosed);

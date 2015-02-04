@@ -11,10 +11,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 public class Lifter extends Subsystem {
 
-	public static final double UP = 1.0;
+	public static final double UP = 0.5;
 	public static final double DOWN = -UP;
 
-	private static final double P = 0.5;
+	private static final double P = 0.3;
 	private static final double I = 0;
 	private static final double D = 0;
 
@@ -31,6 +31,7 @@ public class Lifter extends Subsystem {
 		LiveWindow.addSensor("Lifter", "Down", down);
 
 		left.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		left.enableLimitSwitch(true, true);
 		left.reverseSensor(true);
 		left.setPID(P, I, D);
 
@@ -48,7 +49,7 @@ public class Lifter extends Subsystem {
 	}
 
 	public double getPosition() {
-		return left.getEncPosition() / PULSES_PER_REVOLUTION
+		return left.getPosition() / PULSES_PER_REVOLUTION
 				* INCHES_PER_REVOLUTION;
 	}
 
@@ -63,13 +64,13 @@ public class Lifter extends Subsystem {
 	public void throttleMode() {
 		left.changeControlMode(ControlMode.PercentVbus);
 		left.set(0);
-		left.setPID(P, I, D);
+		left.setPID(0, 0, 0);
 	}
 
 	public void positionMode() {
 		left.changeControlMode(ControlMode.Position);
 		left.set(0);
-		left.setPID(0, 0, 0);
+		left.setPID(P, I, D);
 	}
 
 	public void setSpeed(double speed) {

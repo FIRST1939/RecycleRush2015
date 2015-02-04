@@ -12,13 +12,14 @@ public class LifterTester extends Command {
 	}
 
 	protected void initialize() {
-		SmartDashboard.putNumber("Speed", 0);
-		Robot.lifter.throttleMode();
-		Robot.lifter.enable(); // Robot.lifter.enableControl();
+		Robot.lifter.resetEncoder();
+		SmartDashboard.putNumber("Setpoint", 0);
+		Robot.lifter.enable();
+		Robot.lifter.positionMode();
 	}
 
 	protected void execute() {
-		Robot.lifter.setSpeed(SmartDashboard.getNumber("Speed"));
+		Robot.lifter.setPosition(SmartDashboard.getNumber("Setpoint"));
 		SmartDashboard.putNumber("Encoder", Robot.lifter.getPosition());
 	}
 
@@ -27,12 +28,10 @@ public class LifterTester extends Command {
 	}
 
 	protected void end() {
-		Robot.lifter.setSpeed(0);
 		Robot.lifter.disable();
 	}
 
 	protected void interrupted() {
-		Robot.lifter.setSpeed(0);
 		Robot.lifter.disable();
 	}
 }
