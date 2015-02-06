@@ -32,6 +32,8 @@ public class Lifter extends Subsystem {
 
 		left.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		left.enableLimitSwitch(true, true);
+		left.ConfigRevLimitSwitchNormallyOpen(false);
+		left.ConfigFwdLimitSwitchNormallyOpen(false);
 		left.reverseSensor(true);
 		left.setPID(P, I, D);
 
