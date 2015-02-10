@@ -6,13 +6,14 @@ import org.usfirst.frc.team1939.robot.commands.lifter.GamepadLifter;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.ControlMode;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 public class Lifter extends Subsystem {
 
-	public static final double UP = 0.5;
+	public static final double TOTE_HEIGHT = 12;
+	public static final double HOLD_HEIGHT = 7;
+	
+	public static final double UP = 1;
 	public static final double DOWN = -UP;
 
 	private static final double P = 0.3;
@@ -24,13 +25,8 @@ public class Lifter extends Subsystem {
 
 	private CANTalon left = new CANTalon(RobotMap.talonLifterLeft);
 	private CANTalon right = new CANTalon(RobotMap.talonLifterRight);
-	private DigitalInput up = new DigitalInput(RobotMap.lifterUp);
-	private DigitalInput down = new DigitalInput(RobotMap.lifterDown);
 
 	public Lifter() {
-		LiveWindow.addSensor("Lifter", "Up", up);
-		LiveWindow.addSensor("Lifter", "Down", down);
-
 		left.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		left.enableLimitSwitch(true, true);
 		left.ConfigRevLimitSwitchNormallyOpen(false);
@@ -79,11 +75,11 @@ public class Lifter extends Subsystem {
 	}
 
 	public boolean isUp() {
-		return up.get();
+		return left.isFwdLimitSwitchClosed();
 	}
 
 	public boolean isDown() {
-		return down.get();
+		return left.isRevLimitSwitchClosed();
 	}
 
 	public void resetEncoder() {
