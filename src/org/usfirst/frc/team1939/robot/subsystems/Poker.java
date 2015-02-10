@@ -3,14 +3,42 @@ package org.usfirst.frc.team1939.robot.subsystems;
 import org.usfirst.frc.team1939.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Poker extends Subsystem {
 
+	private static final double IN_SPEED = 1.0;
+	private static final double OUT_SPEED = -IN_SPEED;
+	
 	public CANTalon poker = new CANTalon(RobotMap.talonPoker);
+	
+	private DigitalInput in = new DigitalInput(RobotMap.pokerIn);
+	private DigitalInput out = new DigitalInput(RobotMap.pokerOut);
+	
+	public boolean isOut = false;
 
 	protected void initDefaultCommand() {
-
 	}
 
+	public void spinIn(){
+		poker.set(IN_SPEED);
+	}
+	
+	public void spinOut(){
+		poker.set(OUT_SPEED);
+	}
+	
+	public void stop(){
+		poker.set(0);
+	}
+	
+	public boolean isIn(){
+		return in.get();
+	}
+	
+	public boolean isOut(){
+		return out.get();
+	}
+	
 }

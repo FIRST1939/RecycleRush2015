@@ -13,6 +13,8 @@ public class RobotMap {
 	public static int lifterDown = 5;
 	public static int tailUp = 6;
 	public static int tailDown = 7;
+	public static int pokerOut = 8;
+	public static int pokerIn = 9;
 
 	// Analog
 	public static int gyro = 0;
