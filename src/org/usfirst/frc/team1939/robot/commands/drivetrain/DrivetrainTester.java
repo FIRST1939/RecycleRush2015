@@ -12,6 +12,7 @@ public class DrivetrainTester extends Command {
 	}
 
 	protected void initialize() {
+		Robot.drivetrain.resetEncoders();
 		SmartDashboard.putNumber("Setpoint", 0);
 		Robot.drivetrain.movePID.setSetpoint(0);
 		Robot.drivetrain.movePID.enable();
@@ -36,7 +37,7 @@ public class DrivetrainTester extends Command {
 
 		double y = Robot.drivetrain.movePID.get();
 		SmartDashboard.putNumber("Y", y);
-		Robot.drivetrain.drive(0, y, 0);
+		Robot.drivetrain.drive(0, -y, 0);
 	}
 
 	protected boolean isFinished() {

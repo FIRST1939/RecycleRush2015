@@ -44,7 +44,7 @@ public class Drivetrain extends Subsystem {
 	private Gyro gyro = new Gyro(RobotMap.gyro);
 
 	private static final double moveMaxSpeed = 0.5;
-	private static final double moveP = 0.1;
+	private static final double moveP = 0.01;
 	private static final double moveI = 0;
 	private static final double moveD = 0;
 	private PIDSource moveSource = new PIDSource() {
@@ -93,9 +93,12 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public double getForwardDistance() {
-		return (frontLeft.getPosition() + rearLeft.getPosition()
-				+ frontRight.getPosition() + rearRight.getPosition())
-				/ 4 / PULSES_PER_REVOLUTION * INCHES_PER_REVOLUTION;
+		/*
+		 * return (frontLeft.getPosition() + rearLeft.getPosition() +
+		 * frontRight.getPosition() + rearRight.getPosition()) / 4 /
+		 * PULSES_PER_REVOLUTION * INCHES_PER_REVOLUTION;
+		 */
+		return (rearLeft.getEncPosition() + rearRight.getEncPosition()) / 2;
 	}
 
 	public void driveWithGyro(double x, double y, double z, double multi) {
@@ -123,6 +126,6 @@ public class Drivetrain extends Subsystem {
 		this.frontLeft.setPosition(0);
 		this.rearLeft.setPosition(0);
 		this.frontRight.setPosition(0);
-		this.rearLeft.setPosition(0);
+		this.rearRight.setPosition(0);
 	}
 }
