@@ -12,4 +12,7 @@ public class OI {
 	// Right Joystick
 	public Joystick rightStick = new Joystick(1);
 
+	// Gamepad
+	public Gamepad gamepad = new Gamepad(2);
+
 }
