@@ -16,8 +16,9 @@ public class Doors extends Subsystem {
 	private DigitalInput leftOpen = new DigitalInput(RobotMap.doorsLeftOpen);
 	private DigitalInput leftClosed = new DigitalInput(RobotMap.doorsLeftClosed);
 	private DigitalInput rightOpen = new DigitalInput(RobotMap.doorsRightOpen);
-	private DigitalInput rightClosed = new DigitalInput(
-			RobotMap.doorsRightClosed);
+	private DigitalInput rightClosed = new DigitalInput(RobotMap.doorsRightClosed);
+	
+	public boolean areOpen = false;
 
 	public void initDefaultCommand() {
 	}

@@ -28,6 +28,7 @@ public class OpenDoors extends Command {
 	}
 
 	protected void end() {
+		Robot.doors.areOpen = true;
 		Robot.doors.stop();
 	}
 

@@ -28,6 +28,7 @@ public class CloseDoors extends Command {
 	}
 
 	protected void end() {
+		Robot.doors.areOpen = false;
 		Robot.doors.stop();
 	}
 
