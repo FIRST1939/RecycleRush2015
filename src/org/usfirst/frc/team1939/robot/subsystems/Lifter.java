@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1939.robot.subsystems;
 
 import org.usfirst.frc.team1939.robot.RobotMap;
+import org.usfirst.frc.team1939.robot.commands.lifter.GamepadLifter;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.ControlMode;
@@ -42,8 +43,7 @@ public class Lifter extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
+		this.setDefaultCommand(new GamepadLifter());
 	}
 
 	public void setPosition(double inches) {
@@ -51,8 +51,7 @@ public class Lifter extends Subsystem {
 	}
 
 	public double getPosition() {
-		return left.getPosition() / PULSES_PER_REVOLUTION
-				* INCHES_PER_REVOLUTION;
+		return left.getPosition() / PULSES_PER_REVOLUTION * INCHES_PER_REVOLUTION;
 	}
 
 	public void enable() {
