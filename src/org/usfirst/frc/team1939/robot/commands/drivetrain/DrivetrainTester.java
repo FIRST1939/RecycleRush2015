@@ -19,21 +19,14 @@ public class DrivetrainTester extends Command {
 	}
 
 	protected void execute() {
-		Robot.drivetrain.movePID.setSetpoint(SmartDashboard
-				.getNumber("Setpoint"));
+		Robot.drivetrain.movePID.setSetpoint(SmartDashboard.getNumber("Setpoint"));
 
-		SmartDashboard.putNumber("FL",
-				Robot.drivetrain.frontLeft.getEncPosition());
-		SmartDashboard.putNumber("RL",
-				Robot.drivetrain.rearLeft.getEncPosition());
-		SmartDashboard.putNumber("FR",
-				Robot.drivetrain.frontRight.getEncPosition());
-		SmartDashboard.putNumber("RR",
-				Robot.drivetrain.rearRight.getEncPosition());
-		SmartDashboard.putNumber("Current Point",
-				Robot.drivetrain.getForwardDistance());
-		SmartDashboard.putNumber("Current Setpoint",
-				Robot.drivetrain.movePID.getSetpoint());
+		SmartDashboard.putNumber("FL", Robot.drivetrain.frontLeft.getPosition());
+		SmartDashboard.putNumber("RL", Robot.drivetrain.rearLeft.getPosition());
+		SmartDashboard.putNumber("FR", Robot.drivetrain.frontRight.getPosition());
+		SmartDashboard.putNumber("RR", Robot.drivetrain.rearRight.getPosition());
+		SmartDashboard.putNumber("Current Point", Robot.drivetrain.getForwardDistance());
+		SmartDashboard.putNumber("Current Setpoint", Robot.drivetrain.movePID.getSetpoint());
 
 		double y = Robot.drivetrain.movePID.get();
 		SmartDashboard.putNumber("Y", y);

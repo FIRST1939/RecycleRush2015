@@ -93,12 +93,9 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public double getForwardDistance() {
-		/*
-		 * return (frontLeft.getPosition() + rearLeft.getPosition() +
-		 * frontRight.getPosition() + rearRight.getPosition()) / 4 /
-		 * PULSES_PER_REVOLUTION * INCHES_PER_REVOLUTION;
-		 */
-		return (rearLeft.getEncPosition() + rearRight.getEncPosition()) / 2;
+		return (frontLeft.getPosition() + rearLeft.getPosition() +
+		frontRight.getPosition() + rearRight.getPosition()) / 4 /
+		PULSES_PER_REVOLUTION * INCHES_PER_REVOLUTION;
 	}
 
 	public void driveWithGyro(double x, double y, double z, double multi) {
