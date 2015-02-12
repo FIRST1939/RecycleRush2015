@@ -5,14 +5,12 @@ public class RobotMap {
 	// PWM
 
 	// DIO
-	public static int doorsLeftOpen = 0;
-	public static int doorsLeftClosed = 1;
-	public static int doorsRightOpen = 2;
-	public static int doorsRightClosed = 3;
+	public static int doorsLeftOpen = 1;
+	public static int doorsLeftClosed = 0;
+	public static int doorsRightOpen = 3;
+	public static int doorsRightClosed = 2;
 	public static int tailUp = 6;
 	public static int tailDown = 7;
-	public static int pokerOut = 8;
-	public static int pokerIn = 9;
 
 	// Analog
 	public static int gyro = 0;

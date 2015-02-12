@@ -18,7 +18,7 @@ public class PokerIn extends Command {
     }
 
     protected boolean isFinished() {
-        return Robot.poker.isIn();
+        return true;//Robot.poker.isIn();
     }
 
     protected void end() {

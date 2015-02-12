@@ -18,7 +18,7 @@ public class PokerOut extends Command {
     }
 
     protected boolean isFinished() {
-        return Robot.poker.isOut();
+        return true;//Robot.poker.isOut();
     }
 
     protected void end() {

@@ -4,7 +4,6 @@ import org.usfirst.frc.team1939.robot.RobotMap;
 import org.usfirst.frc.team1939.robot.SpeedControllerSendable;
 
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -14,9 +13,6 @@ public class Poker extends Subsystem {
 	private static final double OUT_SPEED = -IN_SPEED;
 	
 	public CANTalon poker = new CANTalon(RobotMap.talonPoker);
-	
-	private DigitalInput in = new DigitalInput(RobotMap.pokerIn);
-	private DigitalInput out = new DigitalInput(RobotMap.pokerOut);
 	
 	public boolean isOut = false;
 
@@ -37,14 +33,6 @@ public class Poker extends Subsystem {
 	
 	public void stop(){
 		poker.set(0);
-	}
-	
-	public boolean isIn(){
-		return in.get();
-	}
-	
-	public boolean isOut(){
-		return out.get();
 	}
 	
 }
