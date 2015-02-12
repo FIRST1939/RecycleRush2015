@@ -11,6 +11,7 @@ import org.usfirst.frc.team1939.robot.subsystems.Doors;
 import org.usfirst.frc.team1939.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1939.robot.subsystems.Lifter;
 import org.usfirst.frc.team1939.robot.subsystems.Poker;
+import org.usfirst.frc.team1939.robot.subsystems.SmartDashboardSubsystem;
 import org.usfirst.frc.team1939.robot.subsystems.Tail;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -27,6 +28,7 @@ public class Robot extends IterativeRobot {
 	public static final Lifter lifter = new Lifter();
 	public static final Tail tail = new Tail();
 	public static final Poker poker = new Poker();
+	public static final SmartDashboardSubsystem sms = new SmartDashboardSubsystem();
 
 	public static OI oi;
 
