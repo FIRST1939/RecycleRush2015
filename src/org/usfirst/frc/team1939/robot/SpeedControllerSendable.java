@@ -59,7 +59,7 @@ public class SpeedControllerSendable implements LiveWindowSendable{
 
 	@Override
 	public String getSmartDashboardType() {
-		return null;
+		return "RobotDrive";
 	}
 
 
