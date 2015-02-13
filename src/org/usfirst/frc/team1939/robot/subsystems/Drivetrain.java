@@ -27,6 +27,9 @@ public class Drivetrain extends Subsystem {
 		frontRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		rearRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		
+		frontRight.reverseSensor(true);
+		rearRight.reverseSensor(true);
+		
 		LiveWindow.addActuator("Drivetrain", "FrontLeft", new SpeedControllerSendable(frontLeft));
 		LiveWindow.addActuator("Drivetrain", "RearLeft", new SpeedControllerSendable(rearLeft));
 		LiveWindow.addActuator("Drivetrain", "FrontRight", new SpeedControllerSendable(frontRight));
