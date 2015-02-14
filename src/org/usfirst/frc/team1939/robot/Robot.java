@@ -1,12 +1,5 @@
 package org.usfirst.frc.team1939.robot;
 
-import org.usfirst.frc.team1939.robot.commands.SpinEverything;
-import org.usfirst.frc.team1939.robot.commands.doors.CloseDoors;
-import org.usfirst.frc.team1939.robot.commands.doors.OpenDoors;
-import org.usfirst.frc.team1939.robot.commands.drivetrain.DrivetrainTester;
-import org.usfirst.frc.team1939.robot.commands.drivetrain.ResetGyro;
-import org.usfirst.frc.team1939.robot.commands.lifter.LifterTester;
-import org.usfirst.frc.team1939.robot.commands.lifter.ResetLifter;
 import org.usfirst.frc.team1939.robot.subsystems.Doors;
 import org.usfirst.frc.team1939.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1939.robot.subsystems.Lifter;
@@ -39,17 +32,12 @@ public class Robot extends IterativeRobot {
 	public CameraServer server;
 
 	public void robotInit() {
-		Command[] commands = { new CloseDoors(), new OpenDoors(),
-				new ResetGyro(), new ResetLifter(), new LifterTester(),
-				new DrivetrainTester(), new SpinEverything() };
-		for (Command c : commands)
-			SmartDashboard.putData(c);
-
 		oi = new OI();
 
 		chooser = new SendableChooser();
 		// Add commands to chooser
 		// chooser.add(command);
+		SmartDashboard.putData("Autonomous Chooser", chooser);
 
 		server = CameraServer.getInstance();
 		server.setQuality(50);

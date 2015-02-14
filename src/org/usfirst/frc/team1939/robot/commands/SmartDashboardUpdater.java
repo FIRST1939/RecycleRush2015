@@ -17,6 +17,7 @@ public class SmartDashboardUpdater extends Command {
     protected void execute() {
     	SmartDashboard.putBoolean("Lifter Up", Robot.lifter.isUp());
     	SmartDashboard.putBoolean("Lifter Down", Robot.lifter.isDown());
+    	SmartDashboard.putNumber("Lifter Position", Robot.lifter.getPosition());
     	
     	SmartDashboard.putBoolean("Left Open", Robot.doors.leftOpen());
     	SmartDashboard.putBoolean("Left Closed", Robot.doors.leftClosed());
