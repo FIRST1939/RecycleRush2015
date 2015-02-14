@@ -7,13 +7,9 @@ import org.usfirst.frc.team1939.robot.subsystems.Poker;
 import org.usfirst.frc.team1939.robot.subsystems.SmartDashboardSubsystem;
 import org.usfirst.frc.team1939.robot.subsystems.Tail;
 
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 
@@ -26,22 +22,22 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 
-	private SendableChooser chooser;
-	private Command autonomousCommand;
+	//private SendableChooser chooser;
+	//private Command autonomousCommand;
 	
-	public CameraServer server;
+	//public CameraServer server;
 
 	public void robotInit() {
 		oi = new OI();
 
-		chooser = new SendableChooser();
+		//chooser = new SendableChooser();
 		// Add commands to chooser
 		// chooser.add(command);
-		SmartDashboard.putData("Autonomous Chooser", chooser);
+		//SmartDashboard.putData("Autonomous Chooser", chooser);
 
-		server = CameraServer.getInstance();
-		server.setQuality(50);
-		server.startAutomaticCapture("cam0");
+		//server = CameraServer.getInstance();
+		//server.setQuality(50);
+		//server.startAutomaticCapture("cam0");
 		
 		System.out.println("\n========================");
 		System.out.println("Started RecycleRush2015");
@@ -58,6 +54,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
+		/*
 		System.out.println("autonomousInit()");
 		try {
 			autonomousCommand = (Command) chooser.getSelected();
@@ -68,6 +65,7 @@ public class Robot extends IterativeRobot {
 			autonomousCommand.start();
 		else
 			System.out.println("No autonomous selected!");
+		*/
 	}
 
 	public void autonomousPeriodic() {
@@ -93,7 +91,9 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void stopAuton() {
+		/*
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		*/
 	}
 }

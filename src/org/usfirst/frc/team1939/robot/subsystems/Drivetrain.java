@@ -1,7 +1,6 @@
 package org.usfirst.frc.team1939.robot.subsystems;
 
 import org.usfirst.frc.team1939.robot.RobotMap;
-import org.usfirst.frc.team1939.robot.SpeedControllerSendable;
 import org.usfirst.frc.team1939.robot.commands.drivetrain.DriveWithJoystick;
 
 import edu.wpi.first.wpilibj.CANTalon;
@@ -30,10 +29,10 @@ public class Drivetrain extends Subsystem {
 		frontRight.reverseSensor(true);
 		rearRight.reverseSensor(true);
 		
-		LiveWindow.addActuator("Drivetrain", "FrontLeft", new SpeedControllerSendable(frontLeft));
-		LiveWindow.addActuator("Drivetrain", "RearLeft", new SpeedControllerSendable(rearLeft));
-		LiveWindow.addActuator("Drivetrain", "FrontRight", new SpeedControllerSendable(frontRight));
-		LiveWindow.addActuator("Drivetrain", "RearRight", new SpeedControllerSendable(rearRight));
+		//LiveWindow.addActuator("Drivetrain", "FrontLeft", new SpeedControllerSendable(frontLeft));
+		//LiveWindow.addActuator("Drivetrain", "RearLeft", new SpeedControllerSendable(rearLeft));
+		//LiveWindow.addActuator("Drivetrain", "FrontRight", new SpeedControllerSendable(frontRight));
+		//LiveWindow.addActuator("Drivetrain", "RearRight", new SpeedControllerSendable(rearRight));
 	}
 
 	private static final double INCHES_PER_REVOLUTION = 8.0 * Math.PI;
@@ -120,8 +119,7 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void drive(double x, double y, double z, double multi, double gyro) {
-		robotDrive
-				.mecanumDrive_Cartesian(x * multi, y * multi, z * multi, gyro);
+		robotDrive.mecanumDrive_Cartesian(x * multi, y * multi, z * multi, gyro);
 	}
 
 	public void resetGyro() {

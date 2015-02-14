@@ -15,6 +15,14 @@ public class SmartDashboardUpdater extends Command {
     }
 
     protected void execute() {
+    	String buttons = "";
+    	for(int i=0;i<Robot.oi.gamepad.getButtonCount();i++){
+			if(Robot.oi.gamepad.getRawButton(i)){
+				buttons+=i+" ";
+			}
+		}
+    	SmartDashboard.putString("Buttons", buttons);
+    	
     	SmartDashboard.putBoolean("Lifter Up", Robot.lifter.isUp());
     	SmartDashboard.putBoolean("Lifter Down", Robot.lifter.isDown());
     	SmartDashboard.putNumber("Lifter Position", Robot.lifter.getPosition());
