@@ -9,9 +9,13 @@ import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Lifter extends Subsystem {
-
-	public static final double TOTE_HEIGHT = 12;
-	public static final double HOLD_HEIGHT = 7;
+	
+	public static final double BOTTOM = 0;
+	private static final double TOP = 37.5;
+	public static final double HOLD = 6.25; // Hold tote on ground but locked in
+	public static final double ONE_TOTE = 22.5; // Hold with space for one tote
+	public static final double PICK_UP_SECOND = 19; // Pick up height for second tote
+	public static final double CORRAL = 8.2; // Hold tote on ground but above locked in
 	
 	public static final double UP = 1;
 	public static final double DOWN = -UP;
