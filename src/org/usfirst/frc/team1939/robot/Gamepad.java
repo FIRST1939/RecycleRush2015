@@ -2,6 +2,9 @@ package org.usfirst.frc.team1939.robot;
 
 import org.usfirst.frc.team1939.robot.commands.doors.CloseDoors;
 import org.usfirst.frc.team1939.robot.commands.doors.OpenDoors;
+import org.usfirst.frc.team1939.robot.commands.lifter.MoveLifterToTop;
+import org.usfirst.frc.team1939.robot.commands.lifter.SetLifterHeight;
+import org.usfirst.frc.team1939.robot.subsystems.Lifter;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -41,8 +44,20 @@ public class Gamepad extends Joystick {
 
 	public Gamepad(int port) {
 		super(port);
-		a.whenPressed(new CloseDoors());
-		b.whenPressed(new OpenDoors());
+		y.whenPressed(new MoveLifterToTop());
+		a.whenPressed(new SetLifterHeight(Lifter.BOTTOM)); // a.whenPressed(new MoveLifterToBottom());
+		x.whenPressed(new SetLifterHeight(Lifter.ONE_TOTE));
+		b.whenPressed(new SetLifterHeight(Lifter.PICK_UP_SECOND));
+		leftButton.whenPressed(new SetLifterHeight(Lifter.HOLD));
+		rightButton.whenPressed(new SetLifterHeight(Lifter.CORRAL));
+		back.whenPressed(new OpenDoors());
+		start.whenPressed(new CloseDoors());
+		
+		for(int i=0;i<this.getButtonCount();i++){
+			if(this.getRawButton(i)){
+				System.out.println("Button: " + i);
+			}
+		}
 	}
 
 	public double getLeftX() {
