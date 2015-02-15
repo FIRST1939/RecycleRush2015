@@ -14,6 +14,8 @@ public class Poker extends Subsystem {
 	public static final double OUT_REVOLUTIONS = 3;
 	public static final double IN_REVOLUTIONS = 0;
 	
+	public static final double MAXIMUM_LIFTER_HEIGHT = 10;
+	
 	private static final double P = 0.3;
 	private static final double I = 0;
 	private static final double D = 0;

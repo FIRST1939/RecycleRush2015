@@ -14,13 +14,16 @@ public class PokerGamepad extends Command {
     protected void initialize() {
     	Robot.poker.enable();
     	Robot.poker.setPosition(Poker.IN_REVOLUTIONS);
+    	Poker.isIn = true;
     }
 
     protected void execute() {
-    	if(Robot.oi.gamepad.rightTrigger.get()){
+    	if(Robot.oi.gamepad.rightTrigger.get() && Robot.lifter.getPosition()<Poker.MAXIMUM_LIFTER_HEIGHT){
     		Robot.poker.setPosition(Poker.OUT_REVOLUTIONS);
+    		Poker.isIn = false;
     	}else{
     		Robot.poker.setPosition(Poker.IN_REVOLUTIONS);
+    		Poker.isIn = true;
     	}
     }
 

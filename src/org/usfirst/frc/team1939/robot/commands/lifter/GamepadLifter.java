@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1939.robot.commands.lifter;
 
 import org.usfirst.frc.team1939.robot.Robot;
+import org.usfirst.frc.team1939.robot.subsystems.Poker;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -16,7 +17,9 @@ public class GamepadLifter extends Command {
     }
 
     protected void execute() {
-    	Robot.lifter.setSpeed(-Robot.oi.gamepad.getLeftY());
+    	if(Poker.isIn){
+    		Robot.lifter.setSpeed(-Robot.oi.gamepad.getLeftY());
+    	}
     }
 
     protected boolean isFinished() {
