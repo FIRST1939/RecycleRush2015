@@ -16,7 +16,7 @@ public class SetLifterHeight extends Command {
 	}
 
 	protected void initialize() {
-		timer = new PIDTimer(()->Robot.lifter.getPosition(), height, 0.25, 100);
+		timer = new PIDTimer(()->Robot.lifter.getPosition(), height, 0.5, 100);
 		Robot.lifter.positionMode();
 		Robot.lifter.enable();
 		Robot.lifter.setPosition(height);

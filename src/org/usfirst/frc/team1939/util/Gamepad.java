@@ -2,7 +2,6 @@ package org.usfirst.frc.team1939.util;
 
 import org.usfirst.frc.team1939.robot.commands.doors.CloseDoors;
 import org.usfirst.frc.team1939.robot.commands.doors.OpenDoors;
-import org.usfirst.frc.team1939.robot.commands.lifter.MoveLifterToTop;
 import org.usfirst.frc.team1939.robot.commands.lifter.SetLifterHeight;
 import org.usfirst.frc.team1939.robot.subsystems.Lifter;
 
@@ -44,7 +43,7 @@ public class Gamepad extends Joystick {
 
 	public Gamepad(int port) {
 		super(port);
-		y.whenPressed(new MoveLifterToTop());
+		y.whenPressed(new SetLifterHeight(Lifter.TOP));
 		a.whenPressed(new SetLifterHeight(Lifter.BOTTOM)); // a.whenPressed(new MoveLifterToBottom());
 		x.whenPressed(new SetLifterHeight(Lifter.ONE_TOTE));
 		b.whenPressed(new SetLifterHeight(Lifter.PICK_UP_SECOND));

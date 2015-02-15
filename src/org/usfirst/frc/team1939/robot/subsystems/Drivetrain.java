@@ -31,7 +31,7 @@ public class Drivetrain extends Subsystem {
 	}
 
 	private static final double INCHES_PER_REVOLUTION = 8.0 * Math.PI;
-	private static final double PULSES_PER_REVOLUTION = 250;
+	private static final double PULSES_PER_REVOLUTION = 250 * 4;
 
 	private RobotDrive robotDrive = new RobotDrive(frontLeft, rearLeft,
 			frontRight, rearRight);
@@ -47,7 +47,7 @@ public class Drivetrain extends Subsystem {
 	private Gyro gyro = new Gyro(RobotMap.gyro);
 
 	private static final double moveMaxSpeed = 0.5;
-	private static final double moveP = 0.01;
+	private static final double moveP = 0.05;
 	private static final double moveI = 0;
 	private static final double moveD = 0;
 	private PIDSource moveSource = new PIDSource() {
@@ -67,8 +67,8 @@ public class Drivetrain extends Subsystem {
 		LiveWindow.addActuator("Drivetrain", "Move PID", movePID);
 	}
 
-	private static final double turnMaxSpeed = 1;
-	private static final double turnP = 0.05;
+	private static final double turnMaxSpeed = 0.5;
+	private static final double turnP = 0.03;
 	private static final double turnI = 0;
 	private static final double turnD = 0;
 	private PIDSource turnSource = new PIDSource() {

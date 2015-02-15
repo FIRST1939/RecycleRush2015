@@ -16,7 +16,7 @@ public class DriveByInches extends Command {
     }
 
     protected void initialize() {
-    	this.timer = new PIDTimer(()->Robot.drivetrain.getForwardDistance(), inches, 3, 100);
+    	this.timer = new PIDTimer(()->Robot.drivetrain.getForwardDistance(), inches, 3, 500);
     	Robot.drivetrain.resetEncoders();
     	Robot.drivetrain.movePID.enable();
     	Robot.drivetrain.movePID.setSetpoint(inches);
@@ -27,7 +27,7 @@ public class DriveByInches extends Command {
     }
 
     protected void execute() {
-    	Robot.drivetrain.drive(0, Robot.drivetrain.movePID.get(), Robot.drivetrain.turnPID.get());
+    	Robot.drivetrain.drive(0, -Robot.drivetrain.movePID.get(), Robot.drivetrain.turnPID.get());
     	timer.update();
     }
 

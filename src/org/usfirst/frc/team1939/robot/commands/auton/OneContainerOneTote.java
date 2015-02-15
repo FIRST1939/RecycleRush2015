@@ -13,7 +13,7 @@ public class OneContainerOneTote extends CommandGroup {
 		this.addSequential(new SetLifterHeight(Lifter.CONTAINER_ABOVE_TOTE)); // Pick up container
 		this.addSequential(new DriveByInches(30)); // Drive over tote
 		this.addSequential(new SetLifterHeight(Lifter.CORRAL)); // Corral tote
-		this.addSequential(new TurnDegrees(90)); // Turn towards auto zone
+		this.addSequential(new TurnDegrees(90)); // Turn towards auto zone  TURNS RIGHT
 		this.addSequential(new DriveByInches(96)); // Drive into auto zone
 		this.addSequential(new SetLifterHeight(Lifter.CONTAINER_ABOVE_TOTE)); // Pick up container but leave tote down
 		this.addSequential(new DriveByInches(-36)); // Pull away from totes

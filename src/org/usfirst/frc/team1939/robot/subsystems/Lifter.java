@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Lifter extends Subsystem {
 	
 	public static final double BOTTOM = 0;
-	public static final double TOP = 37.5;
+	public static final double TOP = 38;
 	public static final double HOLD = 6.25; // Hold tote on ground but locked in
 	public static final double ONE_TOTE = 22.5; // Hold with space for one tote
 	public static final double PICK_UP_SECOND = 19; // Pick up height for second tote

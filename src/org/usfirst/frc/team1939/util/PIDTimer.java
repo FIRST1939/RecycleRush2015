@@ -23,7 +23,7 @@ public class PIDTimer {
 	public void update(){
 		if(getError.getAsDouble()>margin){
 			timeSettled = 0;
-		}else if(timeSettled!=0){
+		}else if(timeSettled==0){
 			timeSettled = System.currentTimeMillis();
 		}
 	}

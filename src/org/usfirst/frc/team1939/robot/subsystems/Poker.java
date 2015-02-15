@@ -10,13 +10,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Poker extends Subsystem {
 
-	private static final double TICKS_PER_REVOLUTION = 250 * 4;
-	public static final double OUT_REVOLUTIONS = 3;
+	private static final double TICKS_PER_REVOLUTION = 360 * 4;
+	public static final double OUT_REVOLUTIONS = 2.5;
 	public static final double IN_REVOLUTIONS = 0;
 	
-	public static final double MAXIMUM_LIFTER_HEIGHT = 10;
+	public static final double LOWER_LIMIT = 8;
+	public static final double UPPER_LIMIT = 23;
 	
-	private static final double P = 0.3;
+	private static final double P = 0.7;
 	private static final double I = 0;
 	private static final double D = 0;
 	
@@ -45,6 +46,10 @@ public class Poker extends Subsystem {
     	return talon.getPosition() / TICKS_PER_REVOLUTION;
     }
     
+    public double getTicks(){
+    	return talon.getPosition();
+    }
+    
     public double getSpeed(){
     	return talon.getSpeed();
     }
@@ -55,6 +60,10 @@ public class Poker extends Subsystem {
     
     public void disable(){
     	talon.disable();
+    }
+    
+    public void resetEncoder(){
+    	talon.setPosition(0);
     }
    
 }

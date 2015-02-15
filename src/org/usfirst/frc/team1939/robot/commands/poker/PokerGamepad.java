@@ -18,9 +18,13 @@ public class PokerGamepad extends Command {
     }
 
     protected void execute() {
-    	if(Robot.oi.gamepad.rightTrigger.get() && Robot.lifter.getPosition()<Poker.MAXIMUM_LIFTER_HEIGHT){
-    		Robot.poker.setPosition(Poker.OUT_REVOLUTIONS);
-    		Poker.isIn = false;
+    	if(Robot.oi.gamepad.rightTrigger.get()){
+    		if(Robot.lifter.getPosition()>Poker.LOWER_LIMIT && Robot.lifter.getPosition()<Poker.UPPER_LIMIT){
+    			// Do nothing
+    		}else{
+    			Robot.poker.setPosition(Poker.OUT_REVOLUTIONS);
+        		Poker.isIn = false;
+    		}
     	}else{
     		Robot.poker.setPosition(Poker.IN_REVOLUTIONS);
     		Poker.isIn = true;
