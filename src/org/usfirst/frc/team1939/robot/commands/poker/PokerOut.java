@@ -1,32 +1,14 @@
 package org.usfirst.frc.team1939.robot.commands.poker;
 
-import org.usfirst.frc.team1939.robot.Robot;
+import org.usfirst.frc.team1939.robot.subsystems.Poker;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class PokerOut extends Command {
+public class PokerOut extends CommandGroup {
 
     public PokerOut() {
-        requires(Robot.poker);
+        this.addSequential(new SetPokerPosition(Poker.OUT_REVOLUTIONS));
     }
 
-    protected void initialize() {
-    	Robot.poker.spinOut();
-    }
-
-    protected void execute() {
-    }
-
-    protected boolean isFinished() {
-        return true;//Robot.poker.isOut();
-    }
-
-    protected void end() {
-    	Robot.poker.isOut = true;
-    	Robot.poker.stop();
-    }
-
-    protected void interrupted() {
-    	Robot.poker.stop();
-    }
 }
+
