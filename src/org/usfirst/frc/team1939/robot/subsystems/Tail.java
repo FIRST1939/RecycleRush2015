@@ -11,7 +11,6 @@ public class Tail extends Subsystem {
 	public CANTalon tail = new CANTalon(RobotMap.talonTail);
 
 	public Tail() {
-		//LiveWindow.addActuator("Tail", "motor", new SpeedControllerSendable(tail));
 	}
 	
 	public void initDefaultCommand() {

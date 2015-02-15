@@ -28,11 +28,6 @@ public class Drivetrain extends Subsystem {
 		
 		frontRight.reverseSensor(true);
 		rearRight.reverseSensor(true);
-		
-		//LiveWindow.addActuator("Drivetrain", "FrontLeft", new SpeedControllerSendable(frontLeft));
-		//LiveWindow.addActuator("Drivetrain", "RearLeft", new SpeedControllerSendable(rearLeft));
-		//LiveWindow.addActuator("Drivetrain", "FrontRight", new SpeedControllerSendable(frontRight));
-		//LiveWindow.addActuator("Drivetrain", "RearRight", new SpeedControllerSendable(rearRight));
 	}
 
 	private static final double INCHES_PER_REVOLUTION = 8.0 * Math.PI;

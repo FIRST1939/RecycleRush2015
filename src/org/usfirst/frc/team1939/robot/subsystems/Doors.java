@@ -21,8 +21,6 @@ public class Doors extends Subsystem {
 	public boolean areOpen = false;
 	
 	public Doors() {
-		//LiveWindow.addActuator("Doors", "Right", new SpeedControllerSendable(right));
-		//LiveWindow.addActuator("Doors", "Left", new SpeedControllerSendable(left));
 	}
 
 	public void initDefaultCommand() {

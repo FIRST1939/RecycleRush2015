@@ -29,7 +29,6 @@ public class Poker extends Subsystem {
 	}
 	
     public Poker() {
-    	
     }
     
     public void initDefaultCommand() {
