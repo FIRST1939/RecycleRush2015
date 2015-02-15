@@ -1,6 +1,6 @@
 package org.usfirst.frc.team1939.robot.commands.poker;
 
-import org.usfirst.frc.team1939.robot.Robot;
+import org.usfirst.frc.team1939.robot.subsystems.Poker;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -12,10 +12,10 @@ public class TogglePoker extends Command {
     }
 
     protected void initialize() {
-    	if(Robot.poker.isOut){
-    		command = new PokerIn();
-    	}else{
+    	if(Poker.isIn){
     		command = new PokerOut();
+    	}else{
+    		command = new PokerIn();
     	}
     	command.start();
     }

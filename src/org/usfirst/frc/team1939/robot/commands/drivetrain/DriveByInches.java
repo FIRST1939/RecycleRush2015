@@ -1,16 +1,14 @@
 package org.usfirst.frc.team1939.robot.commands.drivetrain;
 
 import org.usfirst.frc.team1939.robot.Robot;
+import org.usfirst.frc.team1939.util.PIDTimer;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveByInches extends Command {
-
-	private static final double MARGIN = 0.05;
-	private static final double SETLE_TIME = 100;
 	
 	private double inches;
-	private long timeSettled=0;
+	private PIDTimer timer;
 	
     public DriveByInches(double inches) {
     	this.inches = inches;
@@ -18,6 +16,7 @@ public class DriveByInches extends Command {
     }
 
     protected void initialize() {
+    	this.timer = new PIDTimer(()->Robot.drivetrain.getForwardDistance(), inches, 3, 100);
     	System.out.println("Started Driving Inches: " + inches);
     	Robot.drivetrain.resetEncoders();
     	Robot.drivetrain.movePID.enable();
@@ -26,16 +25,11 @@ public class DriveByInches extends Command {
 
     protected void execute() {
     	Robot.drivetrain.drive(0, Robot.drivetrain.movePID.get(), 0);
-    	
-    	if (Math.abs(Robot.drivetrain.movePID.get()) <= MARGIN) {
-			timeSettled = System.currentTimeMillis();
-		} else {
-			timeSettled = 0;
-		}
+    	timer.update();
     }
 
     protected boolean isFinished() {
-        return timeSettled != 0 && System.currentTimeMillis() - timeSettled > SETLE_TIME;
+        return timer.isDone();
     }
 
     protected void end() {
