@@ -72,28 +72,24 @@ public class Drivetrain extends Subsystem {
 		LiveWindow.addActuator("Drivetrain", "Move PID", movePID);
 	}
 
-	private static final double rotateMaxSpeed = 0.5;
-	private static final double rotateP = 0.05;
-	private static final double rotateI = 0;
-	private static final double rotateD = 0;
-	private PIDSource rotateSource = new PIDSource() {
+	private static final double turnMaxSpeed = 0.5;
+	private static final double turnP = 0.05;
+	private static final double turnI = 0;
+	private static final double turnD = 0;
+	private PIDSource turnSource = new PIDSource() {
 		public double pidGet() {
-			double leftTurn = (frontLeft.getPosition() + rearLeft.getPosition()) / 2;
-			double rightTurn = (frontRight.getPosition() + rearRight
-					.getPosition()) / 2;
-			return leftTurn - rightTurn;
+			return gyro.getAngle();
 		}
 	};
-	private PIDOutput rotateOutput = new PIDOutput() {
+	private PIDOutput turnOutput = new PIDOutput() {
 		public void pidWrite(double output) {
 			// Do nothing because it is only read from
 		}
 	};
-	public PIDController rotatePID = new PIDController(rotateP, rotateI,
-			rotateD, rotateSource, rotateOutput);
+	public PIDController turnPID = new PIDController(turnP, turnI, turnD, turnSource, turnOutput);
 	{
-		rotatePID.setOutputRange(-rotateMaxSpeed, rotateMaxSpeed);
-		LiveWindow.addActuator("Drivetrain", "Rotate PID", rotatePID);
+		turnPID.setOutputRange(-turnMaxSpeed, turnMaxSpeed);
+		LiveWindow.addActuator("Drivetrain", "turn PID", turnPID);
 	}
 
 	public void initDefaultCommand() {
@@ -101,9 +97,7 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public double getForwardDistance() {
-		return (frontLeft.getPosition() + rearLeft.getPosition() +
-		frontRight.getPosition() + rearRight.getPosition()) / 4 /
-		PULSES_PER_REVOLUTION * INCHES_PER_REVOLUTION;
+		return rearLeft.getPosition() / PULSES_PER_REVOLUTION * INCHES_PER_REVOLUTION;
 	}
 
 	public void driveWithGyro(double x, double y, double z, double multi) {
@@ -122,6 +116,10 @@ public class Drivetrain extends Subsystem {
 		robotDrive.mecanumDrive_Cartesian(x * multi, y * multi, z * multi, gyro);
 	}
 
+	public double getAngle(){
+		return gyro.getAngle();
+	}
+	
 	public void resetGyro() {
 		gyro.reset();
 	}

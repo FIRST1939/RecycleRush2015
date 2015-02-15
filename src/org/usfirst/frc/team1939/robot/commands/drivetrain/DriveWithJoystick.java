@@ -17,9 +17,23 @@ public class DriveWithJoystick extends Command {
 
 	protected void execute() {
 		// Get raw joystick values
-		double x = Robot.oi.leftStick.getX();
-		double y = Robot.oi.leftStick.getY();
-		double z = Robot.oi.rightStick.getX();
+		String rotateMode = (String) Robot.rotateMode.getSelected();
+		String forwardMode = (String) Robot.forwardMode.getSelected();
+		double x = 0;
+		double y = 0;
+		double z = 0;
+		if(forwardMode.equals("Left")){
+			y = Robot.oi.leftStick.getY();
+		}else{
+			y = Robot.oi.rightStick.getY();
+		}
+		if(rotateMode.equals("Left")){
+			x = Robot.oi.rightStick.getX();
+			z = Robot.oi.leftStick.getX();
+		}else{
+			x = Robot.oi.leftStick.getX();
+			z = Robot.oi.rightStick.getX();
+		}
 
 		// Zero low values
 		if (Math.abs(x) < margin)

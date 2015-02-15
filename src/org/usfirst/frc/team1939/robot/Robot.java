@@ -1,5 +1,12 @@
 package org.usfirst.frc.team1939.robot;
 
+import org.usfirst.frc.team1939.robot.commands.SpinEverything;
+import org.usfirst.frc.team1939.robot.commands.auton.OneContainerOneTote;
+import org.usfirst.frc.team1939.robot.commands.drivetrain.DrivetrainTester;
+import org.usfirst.frc.team1939.robot.commands.drivetrain.ResetGyro;
+import org.usfirst.frc.team1939.robot.commands.lifter.MoveLifterToBottom;
+import org.usfirst.frc.team1939.robot.commands.lifter.MoveLifterToTop;
+import org.usfirst.frc.team1939.robot.commands.lifter.ResetLifterEncoder;
 import org.usfirst.frc.team1939.robot.subsystems.Doors;
 import org.usfirst.frc.team1939.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1939.robot.subsystems.Lifter;
@@ -7,9 +14,13 @@ import org.usfirst.frc.team1939.robot.subsystems.Poker;
 import org.usfirst.frc.team1939.robot.subsystems.SmartDashboardSubsystem;
 import org.usfirst.frc.team1939.robot.subsystems.Tail;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 
@@ -22,22 +33,50 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 
-	//private SendableChooser chooser;
-	//private Command autonomousCommand;
+	public static final SendableChooser rotateMode = new SendableChooser();
+	public static final SendableChooser forwardMode = new SendableChooser();
+	private static final SendableChooser autonChooser = new SendableChooser();
 	
-	//public CameraServer server;
+	private Command autonomousCommand;
+	
+	public CameraServer server;
 
 	public void robotInit() {
 		oi = new OI();
+		
+		Command[] commands = {
+				//new CloseDoors(),
+				//new OpenDoors(),
+				//new PokerIn(),
+				//new PokerOut(),
+				new ResetGyro(),
+				new ResetLifterEncoder(),
+				new MoveLifterToBottom(),
+				new MoveLifterToTop(),
+				new DrivetrainTester(),
+				new SpinEverything()
+			};
+		for (Command c : commands) SmartDashboard.putData(c);
+		SmartDashboard.putData(Scheduler.getInstance());
 
-		//chooser = new SendableChooser();
-		// Add commands to chooser
-		// chooser.add(command);
-		//SmartDashboard.putData("Autonomous Chooser", chooser);
+		rotateMode.addDefault("Left Rotate", "Left");
+		rotateMode.addObject("Right Rotate", "Right");
+		SmartDashboard.putData("Rotate Joystick", rotateMode);
+		
+		forwardMode.addDefault("Left Forward", "Left");
+		forwardMode.addObject("Right Forward", "Right");
+		SmartDashboard.putData("Forward Joystick", forwardMode);
+		
+		autonChooser.addDefault("One Container One Tote", new OneContainerOneTote());
+		SmartDashboard.putData("Autonomous Chooser", autonChooser);
 
-		//server = CameraServer.getInstance();
-		//server.setQuality(50);
-		//server.startAutomaticCapture("cam0");
+		try{
+			server = CameraServer.getInstance();
+			server.setQuality(50);
+			server.startAutomaticCapture("cam0");
+		}catch(Exception e){
+			System.out.println("Camera not plugged in");
+		}
 		
 		System.out.println("\n========================");
 		System.out.println("Started RecycleRush2015");
@@ -54,10 +93,9 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
-		/*
 		System.out.println("autonomousInit()");
 		try {
-			autonomousCommand = (Command) chooser.getSelected();
+			autonomousCommand = (Command) autonChooser.getSelected();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -65,7 +103,6 @@ public class Robot extends IterativeRobot {
 			autonomousCommand.start();
 		else
 			System.out.println("No autonomous selected!");
-		*/
 	}
 
 	public void autonomousPeriodic() {

@@ -14,7 +14,6 @@ public class RobotMap {
 
 	// Analog
 	public static int gyro = 0;
-	public static int stringPot = 1;
 
 	// CAN
 	public static int talonFrontLeft = 0;

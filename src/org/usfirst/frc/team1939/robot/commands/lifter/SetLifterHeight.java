@@ -6,8 +6,8 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class SetLifterHeight extends Command {
 
-	private static final double MARGIN = 0.25;
-	private static final double SETLE_TIME = 0.25;
+	private static final double MARGIN = 10;
+	private static final double SETLE_TIME = 100;
 
 	private double height;
 	private long timeSettled = 0;
@@ -24,7 +24,7 @@ public class SetLifterHeight extends Command {
 	}
 
 	protected void execute() {
-		if (Math.abs(Robot.lifter.getPosition() - Robot.lifter.getPosition()) <= MARGIN) {
+		if (Math.abs(Robot.lifter.getSpeed()) <= MARGIN) {
 			timeSettled = System.currentTimeMillis();
 		} else {
 			timeSettled = 0;
@@ -32,8 +32,7 @@ public class SetLifterHeight extends Command {
 	}
 
 	protected boolean isFinished() {
-		return timeSettled != 0
-				&& System.currentTimeMillis() - timeSettled > SETLE_TIME;
+		return timeSettled != 0 && System.currentTimeMillis() - timeSettled > SETLE_TIME;
 	}
 
 	protected void end() {
