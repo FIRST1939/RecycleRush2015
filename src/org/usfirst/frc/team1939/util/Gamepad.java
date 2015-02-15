@@ -1,4 +1,4 @@
-package org.usfirst.frc.team1939.robot;
+package org.usfirst.frc.team1939.util;
 
 import org.usfirst.frc.team1939.robot.commands.doors.CloseDoors;
 import org.usfirst.frc.team1939.robot.commands.doors.OpenDoors;

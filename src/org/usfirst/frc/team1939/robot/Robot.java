@@ -1,6 +1,5 @@
 package org.usfirst.frc.team1939.robot;
 
-import org.usfirst.frc.team1939.robot.commands.SpinEverything;
 import org.usfirst.frc.team1939.robot.commands.auton.OneContainerOneTote;
 import org.usfirst.frc.team1939.robot.commands.drivetrain.DrivetrainTester;
 import org.usfirst.frc.team1939.robot.commands.drivetrain.ResetGyro;
@@ -53,8 +52,7 @@ public class Robot extends IterativeRobot {
 				new ResetLifterEncoder(),
 				new MoveLifterToBottom(),
 				new MoveLifterToTop(),
-				new DrivetrainTester(),
-				new SpinEverything()
+				new DrivetrainTester()
 			};
 		for (Command c : commands) SmartDashboard.putData(c);
 		SmartDashboard.putData(Scheduler.getInstance());

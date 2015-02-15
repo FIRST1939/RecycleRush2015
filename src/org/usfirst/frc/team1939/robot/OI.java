@@ -1,5 +1,7 @@
 package org.usfirst.frc.team1939.robot;
 
+import org.usfirst.frc.team1939.util.Gamepad;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
