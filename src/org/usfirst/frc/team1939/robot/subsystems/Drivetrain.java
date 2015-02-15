@@ -67,7 +67,7 @@ public class Drivetrain extends Subsystem {
 		LiveWindow.addActuator("Drivetrain", "Move PID", movePID);
 	}
 
-	private static final double turnMaxSpeed = 0.5;
+	private static final double turnMaxSpeed = 1;
 	private static final double turnP = 0.05;
 	private static final double turnI = 0;
 	private static final double turnD = 0;
