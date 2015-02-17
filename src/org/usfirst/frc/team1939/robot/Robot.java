@@ -4,11 +4,9 @@ import org.usfirst.frc.team1939.robot.commands.auton.GrabContainersFromStep;
 import org.usfirst.frc.team1939.robot.commands.auton.OneContainerOneTote;
 import org.usfirst.frc.team1939.robot.commands.drivetrain.ResetGyro;
 import org.usfirst.frc.team1939.robot.commands.lifter.ResetLifterEncoder;
-import org.usfirst.frc.team1939.robot.commands.poker.ResetPokerEncoder;
 import org.usfirst.frc.team1939.robot.subsystems.Doors;
 import org.usfirst.frc.team1939.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1939.robot.subsystems.Lifter;
-import org.usfirst.frc.team1939.robot.subsystems.Poker;
 import org.usfirst.frc.team1939.robot.subsystems.SmartDashboardSubsystem;
 import org.usfirst.frc.team1939.robot.subsystems.Tail;
 
@@ -26,7 +24,6 @@ public class Robot extends IterativeRobot {
 	public static final Doors doors = new Doors();
 	public static final Lifter lifter = new Lifter();
 	public static final Tail tail = new Tail();
-	public static final Poker poker = new Poker();
 	public static final SmartDashboardSubsystem sms = new SmartDashboardSubsystem();
 
 	public static OI oi;
@@ -44,8 +41,7 @@ public class Robot extends IterativeRobot {
 		
 		Command[] commands = {
 				new ResetGyro(),
-				new ResetLifterEncoder(),
-				new ResetPokerEncoder()
+				new ResetLifterEncoder()
 			};
 		for (Command c : commands) SmartDashboard.putData(c);
 		SmartDashboard.putData(Scheduler.getInstance());
@@ -120,9 +116,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void stopAuton() {
-		/*
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
-		*/
 	}
 }
