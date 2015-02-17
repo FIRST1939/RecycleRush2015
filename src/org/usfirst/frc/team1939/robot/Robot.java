@@ -1,13 +1,8 @@
 package org.usfirst.frc.team1939.robot;
 
+import org.usfirst.frc.team1939.robot.commands.auton.GrabContainersFromStep;
 import org.usfirst.frc.team1939.robot.commands.auton.OneContainerOneTote;
-import org.usfirst.frc.team1939.robot.commands.auton.TestAuton;
-import org.usfirst.frc.team1939.robot.commands.drivetrain.DriveByInches;
-import org.usfirst.frc.team1939.robot.commands.drivetrain.DrivetrainTester;
 import org.usfirst.frc.team1939.robot.commands.drivetrain.ResetGyro;
-import org.usfirst.frc.team1939.robot.commands.drivetrain.TurnDegrees;
-import org.usfirst.frc.team1939.robot.commands.lifter.MoveLifterToBottom;
-import org.usfirst.frc.team1939.robot.commands.lifter.MoveLifterToTop;
 import org.usfirst.frc.team1939.robot.commands.lifter.ResetLifterEncoder;
 import org.usfirst.frc.team1939.robot.commands.poker.ResetPokerEncoder;
 import org.usfirst.frc.team1939.robot.subsystems.Doors;
@@ -48,15 +43,8 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		Command[] commands = {
-				//new CloseDoors(),
-				//new OpenDoors(),
-				//new PokerIn(),
-				//new PokerOut(),
 				new ResetGyro(),
 				new ResetLifterEncoder(),
-				new MoveLifterToBottom(),
-				new MoveLifterToTop(),
-				new DrivetrainTester(),
 				new ResetPokerEncoder()
 			};
 		for (Command c : commands) SmartDashboard.putData(c);
@@ -71,9 +59,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Forward Joystick", forwardMode);
 		
 		autonChooser.addDefault("One Container One Tote", new OneContainerOneTote());
-		autonChooser.addObject("Drive 100", new DriveByInches(100));
-		autonChooser.addObject("Turn 90", new TurnDegrees(90));
-		autonChooser.addObject("Test Auton", new TestAuton());
+		autonChooser.addDefault("Grab Containers", new GrabContainersFromStep());
 		SmartDashboard.putData("Autonomous Chooser", autonChooser);
 
 		try{

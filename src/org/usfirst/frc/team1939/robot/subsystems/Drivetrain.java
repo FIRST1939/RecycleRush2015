@@ -46,7 +46,7 @@ public class Drivetrain extends Subsystem {
 
 	private Gyro gyro = new Gyro(RobotMap.gyro);
 
-	private static final double moveMaxSpeed = 0.5;
+	private static final double moveMaxSpeed = 0.3;
 	private static final double moveP = 0.05;
 	private static final double moveI = 0;
 	private static final double moveD = 0;
