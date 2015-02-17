@@ -3,7 +3,9 @@ package org.usfirst.frc.team1939.robot;
 public class RobotMap {
 
 	// PWM
-
+	public static int guideLeft = 0;
+	public static int guideRight = 0;
+	
 	// DIO
 	public static int doorsLeftOpen = 1;
 	public static int doorsLeftClosed = 0;
@@ -25,6 +27,5 @@ public class RobotMap {
 	public static int talonDoorsLeft = 6;
 	public static int talonDoorsRight = 7;
 	public static int talonTail = 8;
-	public static int talonPoker = 9;
 
 }

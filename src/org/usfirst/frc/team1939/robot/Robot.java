@@ -6,6 +6,7 @@ import org.usfirst.frc.team1939.robot.commands.drivetrain.ResetGyro;
 import org.usfirst.frc.team1939.robot.commands.lifter.ResetLifterEncoder;
 import org.usfirst.frc.team1939.robot.subsystems.Doors;
 import org.usfirst.frc.team1939.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team1939.robot.subsystems.Guides;
 import org.usfirst.frc.team1939.robot.subsystems.Lifter;
 import org.usfirst.frc.team1939.robot.subsystems.SmartDashboardSubsystem;
 import org.usfirst.frc.team1939.robot.subsystems.Tail;
@@ -25,6 +26,7 @@ public class Robot extends IterativeRobot {
 	public static final Lifter lifter = new Lifter();
 	public static final Tail tail = new Tail();
 	public static final SmartDashboardSubsystem sms = new SmartDashboardSubsystem();
+	public static final Guides guides = new Guides();
 
 	public static OI oi;
 
