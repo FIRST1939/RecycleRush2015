@@ -15,16 +15,20 @@ public class Guides extends Subsystem {
 	private Victor left = new Victor(RobotMap.guideLeft);
 	private Victor right = new Victor(RobotMap.guideRight);
 	
+	private boolean isIn = true;
+	
     public void initDefaultCommand() {
         
     }
     
     public void spinOut(){
+    	isIn = false;
     	this.left.set(LEFT_OUT);
     	this.right.set(RIGHT_OUT);
     }
     
     public void spinIn(){
+    	isIn = true;
     	this.left.set(-LEFT_OUT);
     	this.right.set(-RIGHT_OUT);
     }
@@ -32,6 +36,10 @@ public class Guides extends Subsystem {
     public void stop(){
     	this.left.set(0);
     	this.right.set(0);
+    }
+    
+    public boolean isIn(){
+    	return isIn;
     }
     
 }
