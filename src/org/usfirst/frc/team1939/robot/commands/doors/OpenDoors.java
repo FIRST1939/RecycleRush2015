@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1939.robot.commands.doors;
 
 import org.usfirst.frc.team1939.robot.Robot;
+import org.usfirst.frc.team1939.robot.subsystems.Doors;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -12,23 +13,17 @@ public class OpenDoors extends Command {
 
 	protected void initialize() {
 		Robot.doors.spinOpen();
+		this.setTimeout(Doors.TIME);
 	}
 
 	protected void execute() {
-		if (Robot.doors.leftOpen()) {
-			Robot.doors.stopLeft();
-		}
-		if (Robot.doors.rightOpen()) {
-			Robot.doors.stopRight();
-		}
 	}
 
 	protected boolean isFinished() {
-		return Robot.doors.areOpen();
+		return this.isTimedOut();
 	}
 
 	protected void end() {
-		Robot.doors.areOpen = true;
 		Robot.doors.stop();
 	}
 

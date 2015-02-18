@@ -8,17 +8,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Doors extends Subsystem {
 
-	private static final double SPEED = 1.0;
+	public static final double TIME = 0.2;
+	private static final double SPEED = 0.5;
 
 	public CANTalon right = new CANTalon(RobotMap.talonDoorsRight);
 	public CANTalon left = new CANTalon(RobotMap.talonDoorsLeft);
 
-	private DigitalInput leftOpen = new DigitalInput(RobotMap.doorsLeftOpen);
 	private DigitalInput leftClosed = new DigitalInput(RobotMap.doorsLeftClosed);
-	private DigitalInput rightOpen = new DigitalInput(RobotMap.doorsRightOpen);
 	private DigitalInput rightClosed = new DigitalInput(RobotMap.doorsRightClosed);
 	
-	public boolean areOpen = false;
+	public boolean areOpen = true;
 	
 	public Doors() {
 	}
@@ -27,13 +26,15 @@ public class Doors extends Subsystem {
 	}
 
 	public void spinOpen() {
+		areOpen = true;
 		right.set(SPEED);
-		left.set(-SPEED);
+		left.set(SPEED);
 	}
 
 	public void spinClosed() {
+		areOpen = false;
 		right.set(-SPEED);
-		left.set(SPEED);
+		left.set(-SPEED);
 	}
 
 	public void stop() {
@@ -49,24 +50,12 @@ public class Doors extends Subsystem {
 		right.set(0);
 	}
 
-	public boolean leftOpen() {
-		return leftOpen.get();
-	}
-
 	public boolean leftClosed() {
 		return leftClosed.get();
 	}
 
-	public boolean rightOpen() {
-		return rightOpen.get();
-	}
-
 	public boolean rightClosed() {
 		return rightClosed.get();
-	}
-
-	public boolean areOpen() {
-		return leftOpen() && rightOpen();
 	}
 
 	public boolean areClosed() {
