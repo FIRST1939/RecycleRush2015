@@ -18,6 +18,10 @@ public class GamepadLifter extends Command {
     }
 
     protected void execute() {
+    	if(Robot.lifter.isDown()){
+    		Robot.lifter.resetEncoder();
+    	}
+    	
     	double speed = -Robot.oi.gamepad.getLeftY();
 		if(speed>0){
 			if(Robot.lifter.getPosition()>=Lifter.TOP-1){
