@@ -20,13 +20,20 @@ public class GamepadLifter extends Command {
     protected void execute() {
     	double speed = -Robot.oi.gamepad.getLeftY();
 		if(speed>0){
-			if(Robot.lifter.getPosition()>=Lifter.TOP){
-				speed*=0;
-			}else if(Robot.lifter.getPosition()>=Lifter.TOP-1){
+			if(Robot.lifter.getPosition()>=Lifter.TOP-1){
 				speed*=0.25;
 			}else if(Robot.lifter.getPosition()>=Lifter.TOP-2){
 				speed*=0.5;
 			}else if(Robot.lifter.getPosition()>=Lifter.TOP-3){
+				speed*=0.75;
+			}
+		}
+		if(speed<0){
+			if(Robot.lifter.getPosition()<1){
+				speed*=0.25;
+			}else if(Robot.lifter.getPosition()<2){
+				speed*=0.5;
+			}else if(Robot.lifter.getPosition()<3){
 				speed*=0.75;
 			}
 		}
