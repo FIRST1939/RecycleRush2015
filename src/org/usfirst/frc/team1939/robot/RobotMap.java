@@ -4,7 +4,7 @@ public class RobotMap {
 
 	// PWM
 	public static int guideLeft = 0;
-	public static int guideRight = 0;
+	public static int guideRight = 1;
 	
 	// DIO
 	public static int doorsLeftOpen = 1;
