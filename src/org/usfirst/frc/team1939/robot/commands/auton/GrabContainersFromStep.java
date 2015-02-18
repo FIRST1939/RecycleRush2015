@@ -10,12 +10,12 @@ public class GrabContainersFromStep extends CommandGroup {
     
     public  GrabContainersFromStep() {
         this.addSequential(new SpinTailForTime(Tail.OUT, 3.6));
-        this.addSequential(new DriveByInches(-20));
+        this.addSequential(new DriveByInches(-20, 0.25));
         this.addSequential(new SpinTailForTime(Tail.IN, 2));
-        this.addSequential(new DriveByInches(26));
-        this.addParallel(new DriveByInches(36));
+        this.addSequential(new DriveByInches(26, 0.5));
+        this.addParallel(new DriveByInches(36, 0.5));
         this.addSequential(new SpinTailForTime(Tail.OUT, 1));
-        this.addParallel(new DriveByInches(36));
+        this.addParallel(new DriveByInches(36, 0.5));
         this.addSequential(new SpinTailForTime(Tail.IN, 4));
     }
 }

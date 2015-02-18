@@ -20,6 +20,7 @@ public class TurnDegrees extends Command {
     	Robot.drivetrain.resetGyro();
     	Robot.drivetrain.turnPID.enable();
     	Robot.drivetrain.turnPID.setSetpoint(degrees);
+    	this.setTimeout(5);
     }
 
     protected void execute() {
@@ -28,7 +29,7 @@ public class TurnDegrees extends Command {
     }
 
     protected boolean isFinished() {
-        return timer.isDone();
+        return timer.isDone() || this.isTimedOut();
     }
 
     protected void end() {

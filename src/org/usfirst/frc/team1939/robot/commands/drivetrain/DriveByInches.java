@@ -8,14 +8,17 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveByInches extends Command {
 	
 	private double inches;
+	private double speed;
 	private PIDTimer timer;
 	
-    public DriveByInches(double inches) {
+    public DriveByInches(double inches, double speed) {
     	this.inches = inches;
+    	this.speed = speed;
         requires(Robot.drivetrain);
     }
 
     protected void initialize() {
+    	Robot.drivetrain.setMoveMaxSpeed(speed);
     	this.timer = new PIDTimer(()->Robot.drivetrain.getForwardDistance(), inches, 3, 500);
     	Robot.drivetrain.resetEncoders();
     	Robot.drivetrain.movePID.enable();

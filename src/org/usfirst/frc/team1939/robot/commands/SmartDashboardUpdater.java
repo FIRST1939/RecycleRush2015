@@ -21,6 +21,8 @@ public class SmartDashboardUpdater extends Command {
     	
     	SmartDashboard.putBoolean("Left Closed", Robot.doors.leftClosed());
     	SmartDashboard.putBoolean("Right Closed", Robot.doors.rightClosed());
+    	
+    	SmartDashboard.putNumber("Drivetrain forward", Robot.drivetrain.getForwardDistance());
     }
 
     protected boolean isFinished() {

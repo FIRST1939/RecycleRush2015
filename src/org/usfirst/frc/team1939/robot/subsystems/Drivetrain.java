@@ -46,7 +46,6 @@ public class Drivetrain extends Subsystem {
 
 	private Gyro gyro = new Gyro(RobotMap.gyro);
 
-	private static final double moveMaxSpeed = 0.25;
 	private static final double moveP = 0.05;
 	private static final double moveI = 0;
 	private static final double moveD = 0;
@@ -63,7 +62,7 @@ public class Drivetrain extends Subsystem {
 	public PIDController movePID = new PIDController(moveP, moveI, moveD,
 			moveSource, moveOutput);
 	{
-		movePID.setOutputRange(-moveMaxSpeed, moveMaxSpeed);
+		movePID.setOutputRange(-1, 1);
 		LiveWindow.addActuator("Drivetrain", "Move PID", movePID);
 	}
 
@@ -125,4 +124,10 @@ public class Drivetrain extends Subsystem {
 		this.frontRight.setPosition(0);
 		this.rearRight.setPosition(0);
 	}
+	
+	public void setMoveMaxSpeed(double speed){
+		speed = Math.abs(speed);
+		movePID.setOutputRange(-speed, speed);
+	}
+	
 }

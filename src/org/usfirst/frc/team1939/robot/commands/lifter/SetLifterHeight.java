@@ -16,10 +16,11 @@ public class SetLifterHeight extends Command {
 	}
 
 	protected void initialize() {
-		timer = new PIDTimer(()->Robot.lifter.getPosition(), height, 0.5, 100);
+		timer = new PIDTimer(()->Robot.lifter.getPosition(), height, 1, 500);
 		Robot.lifter.positionMode();
 		Robot.lifter.enable();
 		Robot.lifter.setPosition(height);
+		this.setTimeout(Math.abs(Robot.lifter.getPosition()-height)/6);
 	}
 
 	protected void execute() {
@@ -27,7 +28,7 @@ public class SetLifterHeight extends Command {
 	}
 
 	protected boolean isFinished() {
-		return timer.isDone();
+		return timer.isDone() || this.isTimedOut();
 	}
 
 	protected void end() {
