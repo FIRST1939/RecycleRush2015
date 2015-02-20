@@ -19,7 +19,7 @@ public class DriveByInches extends Command {
 
     protected void initialize() {
     	Robot.drivetrain.setMoveMaxSpeed(speed);
-    	this.timer = new PIDTimer(()->Robot.drivetrain.getForwardDistance(), inches, 3, 500);
+    	this.timer = new PIDTimer(()->Robot.drivetrain.getSpeed(), 0, 1, 100);
     	Robot.drivetrain.resetEncoders();
     	Robot.drivetrain.movePID.enable();
     	Robot.drivetrain.movePID.setSetpoint(inches);

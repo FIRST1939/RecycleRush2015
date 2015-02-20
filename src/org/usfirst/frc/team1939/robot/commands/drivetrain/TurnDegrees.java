@@ -16,7 +16,7 @@ public class TurnDegrees extends Command {
     }
 
     protected void initialize() {
-    	timer = new PIDTimer(()->Robot.drivetrain.getAngle(), degrees, 3, 100);
+    	timer = new PIDTimer(()->Robot.drivetrain.getSpeed(), 0, 1, 100);
     	Robot.drivetrain.resetGyro();
     	Robot.drivetrain.turnPID.enable();
     	Robot.drivetrain.turnPID.setSetpoint(degrees);

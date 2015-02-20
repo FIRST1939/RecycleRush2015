@@ -130,4 +130,8 @@ public class Drivetrain extends Subsystem {
 		movePID.setOutputRange(-speed, speed);
 	}
 	
+	public double getSpeed(){
+		return rearLeft.getSpeed();
+	}
+	
 }
