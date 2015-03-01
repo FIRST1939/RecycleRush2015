@@ -3,16 +3,8 @@ package org.usfirst.frc.team1939.robot;
 public class RobotMap {
 
 	// PWM
-	public static int guideLeft = 0;
-	public static int guideRight = 1;
 	
 	// DIO
-	public static int doorsLeftOpen = 1;
-	public static int doorsLeftClosed = 0;
-	public static int doorsRightOpen = 3;
-	public static int doorsRightClosed = 2;
-	public static int tailUp = 6;
-	public static int tailDown = 7;
 
 	// Analog
 	public static int gyro = 0;

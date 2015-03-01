@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class SmartDashboardUpdater extends Command {
 
     public SmartDashboardUpdater() {
-    	this.requires(Robot.sms);
+    	this.requires(Robot.sds);
     }
 
     protected void initialize() {

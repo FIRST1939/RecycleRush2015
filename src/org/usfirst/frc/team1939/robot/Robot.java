@@ -5,7 +5,6 @@ import org.usfirst.frc.team1939.robot.commands.auton.OneContainerOneTote;
 import org.usfirst.frc.team1939.robot.commands.drivetrain.ResetGyro;
 import org.usfirst.frc.team1939.robot.commands.lifter.ResetLifterEncoder;
 import org.usfirst.frc.team1939.robot.subsystems.Drivetrain;
-import org.usfirst.frc.team1939.robot.subsystems.Guides;
 import org.usfirst.frc.team1939.robot.subsystems.Lifter;
 import org.usfirst.frc.team1939.robot.subsystems.SmartDashboardSubsystem;
 import org.usfirst.frc.team1939.robot.subsystems.Tail;
@@ -23,8 +22,7 @@ public class Robot extends IterativeRobot {
 	public static final Drivetrain drivetrain = new Drivetrain();
 	public static final Lifter lifter = new Lifter();
 	public static final Tail tail = new Tail();
-	public static final SmartDashboardSubsystem sms = new SmartDashboardSubsystem();
-	public static final Guides guides = new Guides();
+	public static final SmartDashboardSubsystem sds = new SmartDashboardSubsystem();
 
 	public static OI oi;
 

@@ -1,6 +1,5 @@
 package org.usfirst.frc.team1939.util;
 
-import org.usfirst.frc.team1939.robot.commands.guides.ToggleGuides;
 import org.usfirst.frc.team1939.robot.commands.lifter.SetLifterHeight;
 import org.usfirst.frc.team1939.robot.subsystems.Lifter;
 
@@ -48,7 +47,6 @@ public class Gamepad extends Joystick {
 		b.whenPressed(new SetLifterHeight(Lifter.PICK_UP_SECOND));
 		leftButton.whenPressed(new SetLifterHeight(Lifter.HOLD));
 		rightButton.whenPressed(new SetLifterHeight(Lifter.CORRAL));
-		start.whenPressed(new ToggleGuides());
 	}
 
 	public double getLeftX() {
