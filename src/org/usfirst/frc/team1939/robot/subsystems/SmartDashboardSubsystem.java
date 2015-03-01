@@ -1,6 +1,6 @@
 package org.usfirst.frc.team1939.robot.subsystems;
 
-import org.usfirst.frc.team1939.robot.commands.SmartDashboardUpdater;
+import org.usfirst.frc.team1939.robot.commands.smartdashboard.SmartDashboardUpdater;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 

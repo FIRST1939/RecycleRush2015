@@ -1,4 +1,4 @@
-package org.usfirst.frc.team1939.robot.commands;
+package org.usfirst.frc.team1939.robot.commands.smartdashboard;
 
 import org.usfirst.frc.team1939.robot.Robot;
 
