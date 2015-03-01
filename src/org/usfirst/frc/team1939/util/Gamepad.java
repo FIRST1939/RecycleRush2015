@@ -1,6 +1,8 @@
 package org.usfirst.frc.team1939.util;
 
 import org.usfirst.frc.team1939.robot.commands.lifter.SetLifterHeight;
+import org.usfirst.frc.team1939.robot.commands.rollerclaw.CloseRollerClaw;
+import org.usfirst.frc.team1939.robot.commands.rollerclaw.OpenRollerClaw;
 import org.usfirst.frc.team1939.robot.subsystems.Lifter;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -42,11 +44,13 @@ public class Gamepad extends Joystick {
 	public Gamepad(int port) {
 		super(port);
 		y.whenPressed(new SetLifterHeight(Lifter.TOP));
-		a.whenPressed(new SetLifterHeight(Lifter.BOTTOM)); // a.whenPressed(new MoveLifterToBottom());
+		a.whenPressed(new SetLifterHeight(Lifter.BOTTOM));
 		x.whenPressed(new SetLifterHeight(Lifter.ONE_TOTE));
 		b.whenPressed(new SetLifterHeight(Lifter.PICK_UP_SECOND));
-		leftButton.whenPressed(new SetLifterHeight(Lifter.HOLD));
-		rightButton.whenPressed(new SetLifterHeight(Lifter.CORRAL));
+		back.whenPressed(new SetLifterHeight(Lifter.HOLD));
+		start.whenPressed(new SetLifterHeight(Lifter.CORRAL));
+		leftButton.whenPressed(new CloseRollerClaw());
+		leftTrigger.whenPressed(new OpenRollerClaw());
 	}
 
 	public double getLeftX() {

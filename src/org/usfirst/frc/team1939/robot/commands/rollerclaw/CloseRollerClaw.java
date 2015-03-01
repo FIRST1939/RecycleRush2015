@@ -1,33 +1,32 @@
 package org.usfirst.frc.team1939.robot.commands.rollerclaw;
 
 import org.usfirst.frc.team1939.robot.Robot;
+import org.usfirst.frc.team1939.robot.subsystems.RollerClaw;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class GamepadRollerClaw extends Command {
+public class CloseRollerClaw extends Command {
 
-    public GamepadRollerClaw() {
-        requires(Robot.rollerClaw);
+    public CloseRollerClaw() {
     }
 
     protected void initialize() {
+    	this.setTimeout(RollerClaw.TIME);
+    	Robot.rollerClaw.move(-RollerClaw.FULL_SPEED);
     }
 
     protected void execute() {
-    	Robot.rollerClaw.spin(Robot.oi.gamepad.getRightY(), Robot.oi.gamepad.getRightX());
     }
 
     protected boolean isFinished() {
-        return false;
+        return this.isTimedOut();
     }
 
     protected void end() {
-    	Robot.rollerClaw.move(0);
-    	Robot.rollerClaw.spin(0, 0);
+    	Robot.rollerClaw.move(-RollerClaw.PART_SPEED);
     }
 
     protected void interrupted() {
     	Robot.rollerClaw.move(0);
-    	Robot.rollerClaw.spin(0, 0);
     }
 }

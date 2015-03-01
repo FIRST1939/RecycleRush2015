@@ -17,7 +17,7 @@ public class SpinTailForTime extends Command {
 
     protected void initialize() {
     	this.setTimeout(time);
-    	Robot.tail.tail.set(speed);
+    	Robot.tail.spin(speed);
     }
 
     protected void execute() {
@@ -28,10 +28,10 @@ public class SpinTailForTime extends Command {
     }
 
     protected void end() {
-    	Robot.tail.tail.set(0);
+    	Robot.tail.spin(0);
     }
 
     protected void interrupted() {
-    	Robot.tail.tail.set(0);
+    	Robot.tail.spin(0);
     }
 }
