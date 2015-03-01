@@ -23,10 +23,7 @@ public class GamepadLifter extends Command {
     	}
     	
     	double speed = -Robot.oi.gamepad.getLeftY();
-    	if(!Robot.guides.isIn() && Robot.lifter.getPosition()<20){
-    		speed=0;
-    	}
-		if(speed>0){
+		if(speed>0 && !Lifter.OVERRIDE){
 			if(Robot.lifter.getPosition()>=Lifter.TOP-1){
 				speed*=0.25;
 			}else if(Robot.lifter.getPosition()>=Lifter.TOP-2){
@@ -35,7 +32,7 @@ public class GamepadLifter extends Command {
 				speed*=0.75;
 			}
 		}
-		if(speed<0){
+		if(speed<0 && !Lifter.OVERRIDE){
 			if(Robot.lifter.getPosition()<1){
 				speed*=0.25;
 			}else if(Robot.lifter.getPosition()<2){

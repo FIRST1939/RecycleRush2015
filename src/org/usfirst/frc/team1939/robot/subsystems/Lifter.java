@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Lifter extends Subsystem {
 	
+	public static boolean OVERRIDE = false;
+	
 	public static final double BOTTOM = 0;
 	public static final double TOP = 38;
 	public static final double HOLD = 6.25; // Hold tote on ground but locked in
@@ -84,14 +86,28 @@ public class Lifter extends Subsystem {
 	}
 
 	public boolean isUp() {
+		if(OVERRIDE){
+			return false;
+		}
 		return !left.isFwdLimitSwitchClosed();
 	}
 
 	public boolean isDown() {
+		if(OVERRIDE){
+			return false;
+		}
 		return !left.isRevLimitSwitchClosed();
 	}
 
 	public void resetEncoder() {
 		left.setPosition(0);
+	}
+	
+	public void disableLimits(){
+		left.enableLimitSwitch(false, false);
+	}
+	
+	public void enableLimits(){
+		left.enableLimitSwitch(true, true);
 	}
 }
