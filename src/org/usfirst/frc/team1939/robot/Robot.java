@@ -60,6 +60,7 @@ public class Robot extends IterativeRobot {
 		autonChooser.addDefault("Grab Containers", new GrabContainersFromStep());
 		autonChooser.addDefault("Drive From Line", new DriveFromLine());
 		autonChooser.addDefault("Drive Over Platform", new DriveOverPlatform());
+		autonChooser.addDefault("One Container !NO TOTE!", new OneContainer());
 		SmartDashboard.putData("Autonomous Chooser", autonChooser);
 
 		try{
