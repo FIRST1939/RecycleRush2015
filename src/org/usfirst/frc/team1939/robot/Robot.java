@@ -3,6 +3,7 @@ package org.usfirst.frc.team1939.robot;
 import org.usfirst.frc.team1939.robot.commands.auton.DriveFromLine;
 import org.usfirst.frc.team1939.robot.commands.auton.DriveOverPlatform;
 import org.usfirst.frc.team1939.robot.commands.auton.GrabContainersFromStep;
+import org.usfirst.frc.team1939.robot.commands.auton.OneContainer;
 import org.usfirst.frc.team1939.robot.commands.auton.OneContainerOneTote;
 import org.usfirst.frc.team1939.robot.commands.drivetrain.ResetGyro;
 import org.usfirst.frc.team1939.robot.commands.lifter.ResetLifterEncoder;
@@ -11,6 +12,7 @@ import org.usfirst.frc.team1939.robot.subsystems.Lifter;
 import org.usfirst.frc.team1939.robot.subsystems.RollerClaw;
 import org.usfirst.frc.team1939.robot.subsystems.SmartDashboardSubsystem;
 import org.usfirst.frc.team1939.robot.subsystems.Tail;
+import org.usfirst.frc.team1939.util.LEDs;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -28,6 +30,7 @@ public class Robot extends IterativeRobot {
 	public static final SmartDashboardSubsystem sds = new SmartDashboardSubsystem();
 	public static final Tail tail = new Tail();
 
+	public static Robot robot;
 	public static OI oi;
 
 	public static final SendableChooser rotateMode = new SendableChooser();
@@ -39,6 +42,7 @@ public class Robot extends IterativeRobot {
 	public CameraServer server;
 
 	public void robotInit() {
+		robot = this;
 		oi = new OI();
 		
 		Command[] commands = {
@@ -70,6 +74,9 @@ public class Robot extends IterativeRobot {
 		}catch(Exception e){
 			System.out.println("Camera not plugged in");
 		}
+		
+		Thread leds = new Thread(new LEDs());
+		leds.start();
 		
 		System.out.println("\n========================");
 		System.out.println("Started RecycleRush2015");
