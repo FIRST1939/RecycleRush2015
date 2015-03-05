@@ -1,5 +1,7 @@
 package org.usfirst.frc.team1939.robot;
 
+import org.usfirst.frc.team1939.robot.commands.auton.DriveFromLine;
+import org.usfirst.frc.team1939.robot.commands.auton.DriveOverPlatform;
 import org.usfirst.frc.team1939.robot.commands.auton.GrabContainersFromStep;
 import org.usfirst.frc.team1939.robot.commands.auton.OneContainerOneTote;
 import org.usfirst.frc.team1939.robot.commands.drivetrain.ResetGyro;
@@ -56,6 +58,8 @@ public class Robot extends IterativeRobot {
 		
 		autonChooser.addDefault("One Container One Tote", new OneContainerOneTote());
 		autonChooser.addDefault("Grab Containers", new GrabContainersFromStep());
+		autonChooser.addDefault("Drive From Line", new DriveFromLine());
+		autonChooser.addDefault("Drive Over Platform", new DriveOverPlatform());
 		SmartDashboard.putData("Autonomous Chooser", autonChooser);
 
 		try{
