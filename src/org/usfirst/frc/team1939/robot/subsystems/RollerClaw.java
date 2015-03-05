@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class RollerClaw extends Subsystem {
 	
 	public static final double TIME = 0.3;
-	public static final double FULL_SPEED = 0.5;
-	public static final double PART_SPEED = 0.05;
+	public static final double FULL_SPEED = 1;
+	public static final double PART_SPEED = 0.2;
 	
 	private Victor victorLeft = new Victor(RobotMap.victorRollerClawLeft);
 	private Victor victorRight = new Victor(RobotMap.victorRollerClawRight);
