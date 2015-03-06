@@ -12,11 +12,15 @@ public class LEDs implements Runnable {
 	private SerialPort port;
 
 	public LEDs() {
-		port = new SerialPort(9600, SerialPort.Port.kUSB);
+		try{
+			port = new SerialPort(9600, SerialPort.Port.kUSB);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	public void run() {
-		while(true){
+		while(port!=null){
 			byte height = (byte) Robot.lifter.getPosition();
 			height = writeBit(height, 0, 7);
 			

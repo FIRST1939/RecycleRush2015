@@ -14,7 +14,8 @@ public class GamepadRollerClaw extends Command {
     }
 
     protected void execute() {
-    	Robot.rollerClaw.spin(Robot.oi.gamepad.getRightY()/0.25, Robot.oi.gamepad.getRightX()/0.25);
+    	Robot.rollerClaw.spin(-Robot.oi.gamepad.getRightY()*
+    			0.6, -Robot.oi.gamepad.getRightX()*0.6);
     }
 
     protected boolean isFinished() {

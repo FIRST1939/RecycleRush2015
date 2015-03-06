@@ -13,7 +13,7 @@ public class Lifter extends Subsystem {
 	public static boolean OVERRIDE = false;
 	
 	public static final double BOTTOM = 0;
-	public static final double TOP = 38;
+	public static final double TOP = 36;
 	public static final double HOLD = 6.25; // Hold tote on ground but locked in
 	public static final double ONE_TOTE = 22.5; // Hold with space for one tote
 	public static final double PICK_UP_SECOND = 19; // Pick up height for second tote
@@ -36,7 +36,7 @@ public class Lifter extends Subsystem {
 	public Lifter() {
 		left.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		left.enableLimitSwitch(true, true);
-		left.ConfigRevLimitSwitchNormallyOpen(false);
+		left.ConfigRevLimitSwitchNormallyOpen(true);
 		left.ConfigFwdLimitSwitchNormallyOpen(false);
 		left.reverseSensor(true);
 		left.setPID(P, I, D);
@@ -96,7 +96,7 @@ public class Lifter extends Subsystem {
 		if(OVERRIDE){
 			return false;
 		}
-		return !left.isRevLimitSwitchClosed();
+		return left.isRevLimitSwitchClosed();
 	}
 
 	public void resetEncoder() {

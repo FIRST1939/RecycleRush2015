@@ -5,14 +5,15 @@ import org.usfirst.frc.team1939.robot.commands.rollerclaw.GamepadRollerClaw;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class RollerClaw extends Subsystem {
 	
-	public static final double TIME = 0.3;
+	public static final double TIME = 2.5;
 	public static final double FULL_SPEED = 1;
-	public static final double PART_SPEED = 0.2;
+	public static final double PART_SPEED = 0.35;
 	
 	private Victor victorLeft = new Victor(RobotMap.victorRollerClawLeft);
 	private Victor victorRight = new Victor(RobotMap.victorRollerClawRight);
@@ -32,7 +33,7 @@ public class RollerClaw extends Subsystem {
     
     public void move(double speed){
     	victorLeft.set(speed);
-    	victorRight.set(speed);
+    	victorRight.set(-speed);
     }
     
     public void spin(double move, double turn){
