@@ -9,13 +9,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class GrabContainersFromStep extends CommandGroup {
     
     public  GrabContainersFromStep() {
-        this.addSequential(new SpinTailForTime(Tail.OUT, 3.6));
-        this.addSequential(new DriveByInches(-20, 0.25));
-        this.addSequential(new SpinTailForTime(Tail.IN, 2));
-        this.addSequential(new DriveByInches(26, 0.5));
-        this.addParallel(new DriveByInches(36, 0.5));
-        this.addSequential(new SpinTailForTime(Tail.OUT, 1));
-        this.addParallel(new DriveByInches(36, 0.5));
-        this.addSequential(new SpinTailForTime(Tail.IN, 4));
+        this.addSequential(new SpinTailForTime(Tail.OUT, 4.4));
+        this.addSequential(new DriveByInches(-14, 0.25));
+        this.addSequential(new SpinTailForTime(Tail.IN, 3));
+        this.addSequential(new DriveByInches(83, 0.25));
+        this.addSequential(new SpinTailForTime(Tail.OUT, 5));
     }
 }

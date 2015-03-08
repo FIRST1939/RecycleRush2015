@@ -1,11 +1,14 @@
 package org.usfirst.frc.team1939.robot;
 
+import org.usfirst.frc.team1939.robot.commands.auton.BombSquad;
 import org.usfirst.frc.team1939.robot.commands.auton.DriveFromLine;
 import org.usfirst.frc.team1939.robot.commands.auton.DriveOverPlatform;
 import org.usfirst.frc.team1939.robot.commands.auton.GrabContainersFromStep;
 import org.usfirst.frc.team1939.robot.commands.auton.OneContainer;
 import org.usfirst.frc.team1939.robot.commands.auton.OneContainerOneTote;
+import org.usfirst.frc.team1939.robot.commands.auton.OneYellowTote;
 import org.usfirst.frc.team1939.robot.commands.drivetrain.ResetGyro;
+import org.usfirst.frc.team1939.robot.commands.drivetrain.TurnByTime;
 import org.usfirst.frc.team1939.robot.commands.lifter.ResetLifterEncoder;
 import org.usfirst.frc.team1939.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1939.robot.subsystems.Lifter;
@@ -60,11 +63,14 @@ public class Robot extends IterativeRobot {
 		forwardMode.addObject("Right Forward", "Right");
 		SmartDashboard.putData("Forward Joystick", forwardMode);
 		
-		autonChooser.addDefault("One Container One Tote", new OneContainerOneTote());
-		autonChooser.addDefault("Grab Containers", new GrabContainersFromStep());
-		autonChooser.addDefault("Drive From Line", new DriveFromLine());
-		autonChooser.addDefault("Drive Over Platform", new DriveOverPlatform());
-		autonChooser.addDefault("One Container !NO TOTE!", new OneContainer());
+		autonChooser.addObject("One Container One Tote", new OneContainerOneTote());
+		autonChooser.addObject("Grab Containers", new GrabContainersFromStep());
+		autonChooser.addObject("Drive From Line", new DriveFromLine());
+		autonChooser.addObject("Drive Over Platform", new DriveOverPlatform());
+		autonChooser.addObject("One Container !NO TOTE!", new OneContainer());
+		autonChooser.addObject("Bomb Squad", new BombSquad());
+		autonChooser.addObject("One Yellow Tote", new OneYellowTote());
+		autonChooser.addDefault("Turn By Time", new TurnByTime(0.75, 0.5));
 		SmartDashboard.putData("Autonomous Chooser", autonChooser);
 
 		try{
