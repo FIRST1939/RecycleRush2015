@@ -16,6 +16,7 @@ public class LEDs implements Runnable {
 			port = new SerialPort(9600, SerialPort.Port.kUSB);
 		}catch(Exception e){
 			e.printStackTrace();
+			System.out.println("Didn't find Arduino");
 		}
 	}
 	
@@ -40,6 +41,7 @@ public class LEDs implements Runnable {
 			buffer[1] = b;
 			port.write(buffer, 1);
 			port.flush();
+			System.out.println("Wrote data to Arduino: b="+b+" height="+height);
 
 			try {
 				Thread.sleep(50);
