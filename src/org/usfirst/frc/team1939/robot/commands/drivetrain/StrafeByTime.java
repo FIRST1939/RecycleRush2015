@@ -6,11 +6,16 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class StrafeByTime extends Command {
 
-	private double time;
+	public static final double RIGHT = 1.0;
+	public static final double LEFT = -RIGHT;
 	
-    public StrafeByTime(double time) {
+	private double time;
+	private double speed;
+	
+    public StrafeByTime(double time, double speed) {
     	requires(Robot.drivetrain);
     	this.time = time;
+    	this.speed = speed;
     }
 
     protected void initialize() {
@@ -19,7 +24,7 @@ public class StrafeByTime extends Command {
     }
 
     protected void execute() {
-    	Robot.drivetrain.driveWithGyro(-1.0, 0, 0, 1);
+    	Robot.drivetrain.driveWithGyro(speed, 0, 0, 1);
     }
 
     protected boolean isFinished() {

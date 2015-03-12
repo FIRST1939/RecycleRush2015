@@ -7,8 +7,10 @@ import org.usfirst.frc.team1939.robot.commands.auton.GrabContainersFromStep;
 import org.usfirst.frc.team1939.robot.commands.auton.OneContainer;
 import org.usfirst.frc.team1939.robot.commands.auton.OneContainerOneTote;
 import org.usfirst.frc.team1939.robot.commands.auton.OneYellowTote;
+import org.usfirst.frc.team1939.robot.commands.auton.TwoTotes;
 import org.usfirst.frc.team1939.robot.commands.drivetrain.ResetGyro;
 import org.usfirst.frc.team1939.robot.commands.drivetrain.TurnByTime;
+import org.usfirst.frc.team1939.robot.commands.drivetrain.TurnDegrees;
 import org.usfirst.frc.team1939.robot.commands.lifter.ResetLifterEncoder;
 import org.usfirst.frc.team1939.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1939.robot.subsystems.Lifter;
@@ -16,6 +18,7 @@ import org.usfirst.frc.team1939.robot.subsystems.RollerClaw;
 import org.usfirst.frc.team1939.robot.subsystems.SmartDashboardSubsystem;
 import org.usfirst.frc.team1939.robot.subsystems.Tail;
 import org.usfirst.frc.team1939.util.LEDs;
+import org.usfirst.frc.team1939.util.Wait;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -70,7 +73,10 @@ public class Robot extends IterativeRobot {
 		autonChooser.addObject("One Container !NO TOTE!", new OneContainer());
 		autonChooser.addObject("Bomb Squad", new BombSquad());
 		autonChooser.addObject("One Yellow Tote", new OneYellowTote());
-		autonChooser.addDefault("Turn By Time", new TurnByTime(0.75, 0.5));
+		autonChooser.addObject("Two Yellow Totes", new TwoTotes());
+		autonChooser.addObject("Turn By Time", new TurnByTime(0.75, 0.5));
+		autonChooser.addObject("Turn By Gyro", new TurnDegrees(90));
+		autonChooser.addDefault("Do Nothing", new Wait(0));
 		SmartDashboard.putData("Autonomous Chooser", autonChooser);
 
 		try{

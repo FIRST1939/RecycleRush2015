@@ -12,7 +12,7 @@ public class BombSquad extends CommandGroup {
     	this.addSequential(new ResetLifterEncoder());
     	this.addSequential(new SetLifterHeight(5));
     	this.addSequential(new DriveByInches(-9, 0.4));
-    	this.addSequential(new StrafeByTime(2.5));
+    	this.addSequential(new StrafeByTime(2.5, StrafeByTime.LEFT));
     	this.addSequential(new SetLifterHeight(-5));
     	this.addParallel(new DriveByInches(36, 0.5));
     }
