@@ -19,6 +19,8 @@ public class Lifter extends Subsystem {
 	public static final double PICK_UP_SECOND = 19; // Pick up height for second tote
 	public static final double CORRAL = 8.2; // Hold tote on ground but above locked in
 	public static final double CONTAINER_ABOVE_TOTE = 32.25; // Hold upright container above tote
+	public static final double LET_IT_GO = 2.5;
+	public static final double STEP =  10.5;
 	
 	public static final double UP = 1;
 	public static final double DOWN = -UP;

@@ -41,12 +41,8 @@ public class Gamepad extends Joystick {
 
 	public Gamepad(int port) {
 		super(port);
-		y.whenPressed(new SetLifterHeight(Lifter.TOP));
-		a.whenPressed(new SetLifterHeight(Lifter.BOTTOM));
-		x.whenPressed(new SetLifterHeight(Lifter.ONE_TOTE));
-		b.whenPressed(new SetLifterHeight(Lifter.PICK_UP_SECOND));
-		back.whenPressed(new SetLifterHeight(Lifter.HOLD));
-		start.whenPressed(new SetLifterHeight(Lifter.CORRAL));
+		a.whenPressed(new SetLifterHeight(Lifter.LET_IT_GO));
+		b.whenPressed(new SetLifterHeight(Lifter.STEP));
 	}
 
 	public double getLeftX() {

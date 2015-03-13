@@ -7,8 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class GamepadRollerClaw extends Command {
 
-	double partSpeed = RollerClaw.PART_SPEED;
-	boolean opened = false;
+	boolean opened = true;
 	
     public GamepadRollerClaw() {
         requires(Robot.rollerClaw);
@@ -20,13 +19,11 @@ public class GamepadRollerClaw extends Command {
     protected void execute() {
     	boolean open = Robot.oi.gamepad.leftTrigger.get();
     	boolean close = Robot.oi.gamepad.leftButton.get();
-    	double speed = partSpeed;
+    	double speed = 0;
     	if(open && !close){
     		speed = -RollerClaw.FULL_SPEED;
-    		partSpeed = -RollerClaw.PART_SPEED;
     	}else if(close && !open){
     		speed = RollerClaw.FULL_SPEED;
-    		partSpeed = 0;
     	}
     	Robot.rollerClaw.move(speed);
     	Robot.rollerClaw.spin(-Robot.oi.gamepad.getRightY()*0.75, -Robot.oi.gamepad.getRightX()*0.75);
