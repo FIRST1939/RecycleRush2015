@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1939.robot.subsystems;
 
+import org.usfirst.frc.team1939.robot.Robot;
 import org.usfirst.frc.team1939.robot.RobotMap;
 import org.usfirst.frc.team1939.robot.commands.drivetrain.DriveWithJoystick;
 
@@ -95,7 +96,11 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void driveWithGyro(double x, double y, double z, double multi) {
-		this.drive(x, y, z, multi, -this.gyro.getAngle());
+		if(Robot.useGyro()){
+			this.drive(x, y, z, multi, -this.gyro.getAngle());
+		}else{
+			this.drive(x, y, z, multi, 0);
+		}
 	}
 
 	public void drive(double x, double y, double z) {

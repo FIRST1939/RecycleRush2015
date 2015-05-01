@@ -26,7 +26,7 @@ public class GamepadRollerClaw extends Command {
     		speed = RollerClaw.FULL_SPEED;
     	}
     	Robot.rollerClaw.move(speed);
-    	Robot.rollerClaw.spin(-Robot.oi.gamepad.getRightY()*0.75, -Robot.oi.gamepad.getRightX()*0.75);
+    	Robot.rollerClaw.spin(-Robot.oi.gamepad.getRightY()*0.85, -Robot.oi.gamepad.getRightX()*0.85);
     }
 
     protected boolean isFinished() {

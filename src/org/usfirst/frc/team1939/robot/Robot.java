@@ -9,14 +9,14 @@ import org.usfirst.frc.team1939.robot.commands.auton.OneContainerOneTote;
 import org.usfirst.frc.team1939.robot.commands.auton.OneYellowTote;
 import org.usfirst.frc.team1939.robot.commands.auton.TwoTotes;
 import org.usfirst.frc.team1939.robot.commands.drivetrain.ResetGyro;
-import org.usfirst.frc.team1939.robot.commands.drivetrain.TurnByTime;
-import org.usfirst.frc.team1939.robot.commands.drivetrain.TurnDegrees;
+import org.usfirst.frc.team1939.robot.commands.drivetrain.Turn90;
 import org.usfirst.frc.team1939.robot.commands.lifter.ResetLifterEncoder;
 import org.usfirst.frc.team1939.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1939.robot.subsystems.Lifter;
 import org.usfirst.frc.team1939.robot.subsystems.RollerClaw;
 import org.usfirst.frc.team1939.robot.subsystems.SmartDashboardSubsystem;
 import org.usfirst.frc.team1939.robot.subsystems.Tail;
+import org.usfirst.frc.team1939.util.Direction;
 import org.usfirst.frc.team1939.util.LEDs;
 import org.usfirst.frc.team1939.util.Wait;
 
@@ -41,6 +41,7 @@ public class Robot extends IterativeRobot {
 
 	public static final SendableChooser rotateMode = new SendableChooser();
 	public static final SendableChooser forwardMode = new SendableChooser();
+	private static final SendableChooser useGyro = new SendableChooser();
 	private static final SendableChooser autonChooser = new SendableChooser();
 	
 	private Command autonomousCommand;
@@ -66,6 +67,10 @@ public class Robot extends IterativeRobot {
 		forwardMode.addObject("Right Forward", "Right");
 		SmartDashboard.putData("Forward Joystick", forwardMode);
 		
+		useGyro.addObject("Turn By Time", false);
+		useGyro.addDefault("Use Gyro", true);
+		SmartDashboard.putData("Gyro Chooser", useGyro);
+		
 		autonChooser.addObject("One Container One Tote", new OneContainerOneTote());
 		autonChooser.addObject("Grab Containers", new GrabContainersFromStep());
 		autonChooser.addObject("Drive From Line", new DriveFromLine());
@@ -74,8 +79,8 @@ public class Robot extends IterativeRobot {
 		autonChooser.addObject("Bomb Squad", new BombSquad());
 		autonChooser.addObject("One Yellow Tote", new OneYellowTote());
 		autonChooser.addObject("Two Yellow Totes", new TwoTotes());
-		autonChooser.addObject("Turn By Time", new TurnByTime(0.75, 0.5));
-		autonChooser.addObject("Turn By Gyro", new TurnDegrees(90));
+		autonChooser.addObject("Turn Left", new Turn90(Direction.LEFT));
+		autonChooser.addObject("Turn Right", new Turn90(Direction.RIGHT));
 		autonChooser.addDefault("Do Nothing", new Wait(0));
 		SmartDashboard.putData("Autonomous Chooser", autonChooser);
 
@@ -142,5 +147,9 @@ public class Robot extends IterativeRobot {
 	public void stopAuton() {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+	}
+	
+	public static boolean useGyro(){
+		return (boolean) useGyro.getSelected();
 	}
 }
