@@ -3,8 +3,6 @@ package org.usfirst.frc.team1939.robot.commands.auton;
 import org.usfirst.frc.team1939.robot.commands.drivetrain.DriveByInches;
 import org.usfirst.frc.team1939.robot.commands.drivetrain.StrafeByTime;
 import org.usfirst.frc.team1939.robot.commands.lifter.SetLifterHeight;
-import org.usfirst.frc.team1939.robot.commands.rollerclaw.MoveRollerClaw;
-import org.usfirst.frc.team1939.robot.commands.rollerclaw.SpinRollerClaw;
 import org.usfirst.frc.team1939.robot.subsystems.Lifter;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
