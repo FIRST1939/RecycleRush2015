@@ -20,11 +20,11 @@ public class StrafeByTime extends Command {
 
     protected void initialize() {
     	this.setTimeout(time);
-    	Robot.drivetrain.resetGyro();
+    	Robot.ahrs.reset();
     }
 
     protected void execute() {
-    	Robot.drivetrain.driveWithGyro(speed, 0, 0, 1);
+    	Robot.drivetrain.drive(speed, 0, 0);
     }
 
     protected boolean isFinished() {

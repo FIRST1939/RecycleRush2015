@@ -13,7 +13,7 @@ public class ResetGyro extends Command {
 	}
 
 	protected void execute() {
-		Robot.drivetrain.resetGyro();
+		Robot.ahrs.reset();
 	}
 
 	protected boolean isFinished() {

@@ -21,7 +21,7 @@ public class SmartDashboardUpdater extends Command {
     	SmartDashboard.putBoolean("Lifter Down", Robot.lifter.isDown());
     	SmartDashboard.putNumber("Lifter Position", Robot.lifter.getPosition());
     	SmartDashboard.putNumber("Lifter Speed", Robot.lifter.getSpeed());
-    	SmartDashboard.putNumber("Gyro", Robot.drivetrain.getAngle());
+    	SmartDashboard.putNumber("Gyro", Robot.ahrs.getAngle());
     	
     	SmartDashboard.putNumber("Drivetrain forward", Robot.drivetrain.getForwardDistance());
     	SmartDashboard.putNumber("Drivetrain Speed", Robot.drivetrain.getSpeed());

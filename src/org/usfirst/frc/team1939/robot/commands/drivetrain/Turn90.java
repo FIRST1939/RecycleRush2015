@@ -21,26 +21,16 @@ public class Turn90 extends Command {
     }
 
     protected void initialize() {
-    	useGyro = Robot.useGyro();
-    	if(useGyro){
-    		double degrees = 0;
-    		if(d==Direction.LEFT){
-    			degrees = -90;
-    		}else if(d==Direction.RIGHT){
-    			degrees = 90;
-    		}
-    		timer = new PIDTimer(()->Robot.drivetrain.getSpeed(), 0, 1, 500);
-        	Robot.drivetrain.resetGyro();
-        	Robot.drivetrain.turnPID.enable();
-        	Robot.drivetrain.turnPID.setSetpoint(degrees);
-    	}else{
-    		if(d==Direction.LEFT){
-    			speed = -0.5;
-    		}else if(d==Direction.RIGHT){
-    			speed = 0.5;
-    		}
-    		this.setTimeout(0.8);
-    	}
+		double degrees = 0;
+		if(d==Direction.LEFT){
+			degrees = -90;
+		}else if(d==Direction.RIGHT){
+			degrees = 90;
+		}
+		timer = new PIDTimer(()->Robot.drivetrain.getSpeed(), 0, 1, 500);
+    	Robot.ahrs.reset();
+    	Robot.drivetrain.turnPID.enable();
+    	Robot.drivetrain.turnPID.setSetpoint(degrees);
     }
 
     protected void execute() {

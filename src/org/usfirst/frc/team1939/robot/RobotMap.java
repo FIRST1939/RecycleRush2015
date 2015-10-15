@@ -9,7 +9,6 @@ public class RobotMap {
 	// DIO
 
 	// Analog
-	public static final int gyro = 0;
 
 	// CAN
 	public static final int talonFrontLeft = 0;

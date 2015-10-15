@@ -20,8 +20,12 @@ import org.usfirst.frc.team1939.util.Direction;
 import org.usfirst.frc.team1939.util.LEDs;
 import org.usfirst.frc.team1939.util.Wait;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -35,13 +39,13 @@ public class Robot extends IterativeRobot {
 	public static final RollerClaw rollerClaw = new RollerClaw();
 	public static final SmartDashboardSubsystem sds = new SmartDashboardSubsystem();
 	public static final Tail tail = new Tail();
+	public static AHRS ahrs;
 
 	public static Robot robot;
 	public static OI oi;
 
 	public static final SendableChooser rotateMode = new SendableChooser();
 	public static final SendableChooser forwardMode = new SendableChooser();
-	private static final SendableChooser useGyro = new SendableChooser();
 	private static final SendableChooser autonChooser = new SendableChooser();
 	
 	private Command autonomousCommand;
@@ -49,9 +53,12 @@ public class Robot extends IterativeRobot {
 	public CameraServer server;
 
 	public void robotInit() {
+		System.out.println("/n===================================");
+		System.out.println("Started Intializing RecycleRush2015");
 		robot = this;
 		oi = new OI();
 		
+		System.out.println("Intializing SmartDashboard");
 		Command[] commands = {
 				new ResetGyro(),
 				new ResetLifterEncoder()
@@ -67,10 +74,6 @@ public class Robot extends IterativeRobot {
 		forwardMode.addObject("Right Forward", "Right");
 		SmartDashboard.putData("Forward Joystick", forwardMode);
 		
-		useGyro.addObject("Turn By Time", false);
-		useGyro.addDefault("Use Gyro", true);
-		SmartDashboard.putData("Gyro Chooser", useGyro);
-		
 		autonChooser.addObject("One Container One Tote", new OneContainerOneTote());
 		autonChooser.addObject("Grab Containers", new GrabContainersFromStep());
 		autonChooser.addObject("Drive From Line", new DriveFromLine());
@@ -84,6 +87,7 @@ public class Robot extends IterativeRobot {
 		autonChooser.addDefault("Do Nothing", new Wait(0));
 		SmartDashboard.putData("Autonomous Chooser", autonChooser);
 
+		System.out.println("Intialzing Camera");
 		try{
 			server = CameraServer.getInstance();
 			server.setQuality(50);
@@ -92,12 +96,19 @@ public class Robot extends IterativeRobot {
 			System.out.println("Camera not plugged in");
 		}
 		
+		System.out.println("Intializing navX");
+		try {
+            ahrs = new AHRS(SerialPort.Port.kMXP);
+        } catch (RuntimeException ex ) {
+            DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
+        }
+		
+		System.out.println("Intializing LEDs");
 		Thread leds = new Thread(new LEDs());
 		leds.start();
 		
-		System.out.println("\n========================");
 		System.out.println("Started RecycleRush2015");
-		System.out.println("========================\n");
+		System.out.println("========================/n");
 	}
 
 	public void disabledInit() {
@@ -149,7 +160,4 @@ public class Robot extends IterativeRobot {
 			autonomousCommand.cancel();
 	}
 	
-	public static boolean useGyro(){
-		return (boolean) useGyro.getSelected();
-	}
 }

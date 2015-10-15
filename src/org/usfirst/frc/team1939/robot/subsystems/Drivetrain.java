@@ -6,7 +6,6 @@ import org.usfirst.frc.team1939.robot.commands.drivetrain.DriveWithJoystick;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
-import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -45,8 +44,6 @@ public class Drivetrain extends Subsystem {
 		robotDrive.setMaxOutput(1.0);
 	}
 
-	private Gyro gyro = new Gyro(RobotMap.gyro);
-
 	private static final double moveP = 0.05;
 	private static final double moveI = 0;
 	private static final double moveD = 0;
@@ -73,7 +70,7 @@ public class Drivetrain extends Subsystem {
 	private static final double turnD = 0;
 	private PIDSource turnSource = new PIDSource() {
 		public double pidGet() {
-			return gyro.getAngle();
+			return Robot.ahrs.getAngle();
 		}
 	};
 	private PIDOutput turnOutput = new PIDOutput() {
@@ -95,32 +92,12 @@ public class Drivetrain extends Subsystem {
 		return rearLeft.getPosition() / PULSES_PER_REVOLUTION * INCHES_PER_REVOLUTION;
 	}
 
-	public void driveWithGyro(double x, double y, double z, double multi) {
-		if(Robot.useGyro()){
-			this.drive(x, y, z, multi, -this.gyro.getAngle());
-		}else{
-			this.drive(x, y, z, multi, 0);
-		}
-	}
-
 	public void drive(double x, double y, double z) {
 		this.drive(x, y, z, 1.0);
 	}
 
 	public void drive(double x, double y, double z, double multi) {
-		this.drive(x, y, z, multi, 0);
-	}
-
-	public void drive(double x, double y, double z, double multi, double gyro) {
-		robotDrive.mecanumDrive_Cartesian(x * multi, y * multi, z * multi, gyro);
-	}
-
-	public double getAngle(){
-		return gyro.getAngle();
-	}
-	
-	public void resetGyro() {
-		gyro.reset();
+		robotDrive.mecanumDrive_Cartesian(x * multi, y * multi, z * multi, Robot.ahrs.getAngle());
 	}
 
 	public void resetEncoders() {

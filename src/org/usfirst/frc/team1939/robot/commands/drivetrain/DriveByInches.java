@@ -24,7 +24,7 @@ public class DriveByInches extends Command {
     	Robot.drivetrain.movePID.enable();
     	Robot.drivetrain.movePID.setSetpoint(inches);
     	
-    	Robot.drivetrain.resetGyro();
+    	Robot.ahrs.reset();
     	Robot.drivetrain.turnPID.enable();
     	Robot.drivetrain.turnPID.setSetpoint(0);
     }
