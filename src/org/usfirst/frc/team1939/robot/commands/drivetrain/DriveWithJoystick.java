@@ -12,9 +12,11 @@ public class DriveWithJoystick extends Command {
 		requires(Robot.drivetrain);
 	}
 
+	@Override
 	protected void initialize() {
 	}
 
+	@Override
 	protected void execute() {
 		// Get raw joystick values
 		String rotateMode = (String) Robot.rotateMode.getSelected();
@@ -22,17 +24,18 @@ public class DriveWithJoystick extends Command {
 		double x = 0;
 		double y = 0;
 		double z = 0;
-		if(forwardMode.equals("Left")){
-			y = Robot.oi.leftStick.getY();
-		}else{
-			y = Robot.oi.rightStick.getY();
+
+		if (forwardMode.equals("Left")) {
+			y = Robot.oi.leftStick.getRawAxis(1);
+		} else {
+			y = Robot.oi.rightStick.getRawAxis(1);
 		}
-		if(rotateMode.equals("Left")){
-			x = Robot.oi.rightStick.getX();
-			z = Robot.oi.leftStick.getX();
-		}else{
-			x = Robot.oi.leftStick.getX();
-			z = Robot.oi.rightStick.getX();
+		if (rotateMode.equals("Left")) {
+			x = Robot.oi.rightStick.getRawAxis(0);
+			z = Robot.oi.leftStick.getRawAxis(0);
+		} else {
+			x = Robot.oi.leftStick.getRawAxis(0);
+			z = Robot.oi.rightStick.getRawAxis(0);
 		}
 
 		// Zero low values
@@ -66,18 +69,20 @@ public class DriveWithJoystick extends Command {
 		Robot.drivetrain.drive(x, y, z, multi);
 	}
 
+	@Override
 	protected boolean isFinished() {
 		return false;
 	}
 
+	@Override
 	protected void end() {
 	}
 
+	@Override
 	protected void interrupted() {
 	}
 
-	private static double map(double x, double in_min, double in_max,
-			double out_min, double out_max) {
+	private static double map(double x, double in_min, double in_max, double out_min, double out_max) {
 		return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 	}
 }

@@ -7,39 +7,44 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class GamepadRollerClaw extends Command {
 
-	boolean opened = true;
-	
-    public GamepadRollerClaw() {
-        requires(Robot.rollerClaw);
-    }
+	public GamepadRollerClaw() {
+		requires(Robot.rollerClaw);
+	}
 
-    protected void initialize() {
-    }
+	@Override
+	protected void initialize() {
+		Robot.rollerClaw.controller.enable();
+	}
 
-    protected void execute() {
-    	boolean open = Robot.oi.gamepad.leftTrigger.get();
-    	boolean close = Robot.oi.gamepad.leftButton.get();
-    	double speed = 0;
-    	if(open && !close){
-    		speed = -RollerClaw.FULL_SPEED;
-    	}else if(close && !open){
-    		speed = RollerClaw.FULL_SPEED;
-    	}
-    	Robot.rollerClaw.move(speed);
-    	Robot.rollerClaw.spin(-Robot.oi.gamepad.getRightY()*0.85, -Robot.oi.gamepad.getRightX()*0.85);
-    }
+	@Override
+	protected void execute() {
+		boolean open = Robot.oi.gamepad.leftTrigger.get();
+		boolean close = Robot.oi.gamepad.leftButton.get();
+		if (open && !close) {
+			Robot.rollerClaw.controller.setSetpoint(RollerClaw.OPEN);
+		} else if (close && !open) {
+			Robot.rollerClaw.controller.setSetpoint(RollerClaw.CLOSED);
+		}
+		Robot.rollerClaw.move(Robot.rollerClaw.controller.get());
+		Robot.rollerClaw.spin(-Robot.oi.gamepad.getRightY() * 0.85, -Robot.oi.gamepad.getRightX() * 0.85);
+	}
 
-    protected boolean isFinished() {
-        return false;
-    }
+	@Override
+	protected boolean isFinished() {
+		return false;
+	}
 
-    protected void end() {
-    	Robot.rollerClaw.move(0);
-    	Robot.rollerClaw.spin(0, 0);
-    }
+	@Override
+	protected void end() {
+		Robot.rollerClaw.controller.disable();
+		Robot.rollerClaw.move(0);
+		Robot.rollerClaw.spin(0, 0);
+	}
 
-    protected void interrupted() {
-    	Robot.rollerClaw.move(0);
-    	Robot.rollerClaw.spin(0, 0);
-    }
+	@Override
+	protected void interrupted() {
+		Robot.rollerClaw.controller.disable();
+		Robot.rollerClaw.move(0);
+		Robot.rollerClaw.spin(0, 0);
+	}
 }

@@ -3,10 +3,10 @@ package org.usfirst.frc.team1939.robot;
 public class RobotMap {
 
 	// PWM
-	public static final int victorRollerClawLeft = 0;
-	public static final int victorRollerClawRight = 1;
-	
+
 	// DIO
+	public static final int rollerClawEncoderA = 0;
+	public static final int rollerClawEnoderB = 1;
 
 	// Analog
 
@@ -19,6 +19,6 @@ public class RobotMap {
 	public static final int talonLifterRight = 5;
 	public static final int talonRollerClawLeft = 6;
 	public static final int talonRollerClawRight = 7;
-	public static final int talonTail = 8;
+	public static final int talonRollerClaw = 8;
 
 }
