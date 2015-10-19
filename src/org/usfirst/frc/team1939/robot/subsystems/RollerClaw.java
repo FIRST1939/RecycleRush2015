@@ -2,7 +2,6 @@ package org.usfirst.frc.team1939.robot.subsystems;
 
 import org.usfirst.frc.team1939.robot.RobotMap;
 import org.usfirst.frc.team1939.robot.commands.rollerclaw.GamepadRollerClaw;
-import org.usfirst.frc.team1939.robot.commands.rollerclaw.ResetRollerClawEncoder;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
@@ -11,7 +10,6 @@ import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class RollerClaw extends Subsystem {
 
@@ -48,7 +46,6 @@ public class RollerClaw extends Subsystem {
 
 	@Override
 	public void initDefaultCommand() {
-		SmartDashboard.putData("Reset Roller Claw Encoder", new ResetRollerClawEncoder());
 		setDefaultCommand(new GamepadRollerClaw());
 	}
 

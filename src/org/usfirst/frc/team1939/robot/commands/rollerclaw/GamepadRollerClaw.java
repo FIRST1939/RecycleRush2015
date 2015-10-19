@@ -4,6 +4,7 @@ import org.usfirst.frc.team1939.robot.Robot;
 import org.usfirst.frc.team1939.robot.subsystems.RollerClaw;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class GamepadRollerClaw extends Command {
 
@@ -25,7 +26,15 @@ public class GamepadRollerClaw extends Command {
 		} else if (close && !open) {
 			Robot.rollerClaw.controller.setSetpoint(RollerClaw.CLOSED);
 		}
-		Robot.rollerClaw.move(Robot.rollerClaw.controller.get());
+		if (!SmartDashboard.getBoolean("Roller Claw Override")) {
+			Robot.rollerClaw.move(Robot.rollerClaw.controller.get());
+		} else {
+			if (open && !close) {
+				Robot.rollerClaw.move(0.3);
+			} else if (close && !open) {
+				Robot.rollerClaw.move(-0.3);
+			}
+		}
 		Robot.rollerClaw.spin(-Robot.oi.gamepad.getRightY() * 0.85, -Robot.oi.gamepad.getRightX() * 0.85);
 	}
 

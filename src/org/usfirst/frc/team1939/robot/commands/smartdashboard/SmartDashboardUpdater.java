@@ -14,7 +14,8 @@ public class SmartDashboardUpdater extends Command {
 
 	@Override
 	protected void initialize() {
-		SmartDashboard.putBoolean("Override", Lifter.OVERRIDE);
+		SmartDashboard.putBoolean("Lifter Override", Lifter.OVERRIDE);
+		SmartDashboard.putBoolean("Roller Claw Override", false);
 	}
 
 	@Override
@@ -30,7 +31,7 @@ public class SmartDashboardUpdater extends Command {
 
 		SmartDashboard.putNumber("Roller Claw Encoder", Robot.rollerClaw.getEncoder());
 
-		Lifter.OVERRIDE = SmartDashboard.getBoolean("Override");
+		Lifter.OVERRIDE = SmartDashboard.getBoolean("Lifter Override");
 		if (Lifter.OVERRIDE) {
 			Robot.lifter.disableLimits();
 		} else {

@@ -10,6 +10,7 @@ import org.usfirst.frc.team1939.robot.commands.auton.TwoTotes;
 import org.usfirst.frc.team1939.robot.commands.drivetrain.ResetGyro;
 import org.usfirst.frc.team1939.robot.commands.drivetrain.Turn90;
 import org.usfirst.frc.team1939.robot.commands.lifter.ResetLifterEncoder;
+import org.usfirst.frc.team1939.robot.commands.rollerclaw.ResetRollerClawEncoder;
 import org.usfirst.frc.team1939.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1939.robot.subsystems.Lifter;
 import org.usfirst.frc.team1939.robot.subsystems.RollerClaw;
@@ -57,7 +58,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 
 		System.out.println("Intializing SmartDashboard");
-		Command[] commands = { new ResetGyro(), new ResetLifterEncoder() };
+		Command[] commands = { new ResetGyro(), new ResetLifterEncoder(), new ResetRollerClawEncoder() };
 		for (Command c : commands)
 			SmartDashboard.putData(c);
 		SmartDashboard.putData(Scheduler.getInstance());
