@@ -106,7 +106,14 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void drive(double x, double y, double z, double multi) {
-		this.robotDrive.mecanumDrive_Cartesian(x * multi, y * multi, z * multi, 0);// Robot.ahrs.getAngle());
+		this.robotDrive.mecanumDrive_Cartesian(x * multi, y * multi, z * multi, 0);
+	}
+
+	public void driveWithGyro(double x, double y, double z, double multi) {
+		if (z != 0) {
+			Robot.ahrs.reset();
+		}
+		this.robotDrive.mecanumDrive_Cartesian(x * multi, y * multi, z * multi, Robot.ahrs.getAngle());
 	}
 
 	public void resetEncoders() {

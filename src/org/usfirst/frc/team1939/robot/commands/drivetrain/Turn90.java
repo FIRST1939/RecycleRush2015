@@ -9,52 +9,47 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Turn90 extends Command {
 
 	private Direction d;
-	private boolean useGyro;
-
 	private PIDTimer timer;
-	
-	private double speed;
-	
-    public Turn90(Direction d) {
-        requires(Robot.drivetrain);
-        this.d = d;
-    }
 
-    protected void initialize() {
+	public Turn90(Direction d) {
+		requires(Robot.drivetrain);
+		this.d = d;
+	}
+
+	@Override
+	protected void initialize() {
 		double degrees = 0;
-		if(d==Direction.LEFT){
+		if (this.d == Direction.LEFT) {
 			degrees = -90;
-		}else if(d==Direction.RIGHT){
+		} else if (this.d == Direction.RIGHT) {
 			degrees = 90;
 		}
-		timer = new PIDTimer(()->Robot.drivetrain.getSpeed(), 0, 1, 500);
-    	Robot.ahrs.reset();
-    	Robot.drivetrain.turnPID.enable();
-    	Robot.drivetrain.turnPID.setSetpoint(degrees);
-    }
+		this.timer = new PIDTimer(() -> Robot.drivetrain.turnPID.getError(), 0, 5, 500);
+		Robot.ahrs.reset();
+		Robot.drivetrain.turnPID.enable();
+		Robot.drivetrain.turnPID.setSetpoint(degrees);
+	}
 
-    protected void execute() {
-    	if(useGyro){
-    		Robot.drivetrain.drive(0, 0, Robot.drivetrain.turnPID.get());
-        	timer.update();
-    	}else{
-    		Robot.drivetrain.drive(0, 0, speed);
-    	}
-    }
+	@Override
+	protected void execute() {
+		Robot.drivetrain.drive(0, 0, Robot.drivetrain.turnPID.get());
+		this.timer.update();
+	}
 
-    protected boolean isFinished() {
-        if(useGyro && timer.isDone()) return true;
-        else if(!useGyro && this.isTimedOut()) return true;
-        else return false;
-    }
+	@Override
+	protected boolean isFinished() {
+		return this.timer.isDone();
+	}
 
-    protected void end() {
-    	Robot.drivetrain.turnPID.disable();
-    	Robot.drivetrain.drive(0, 0, 0);
-    }
+	@Override
+	protected void end() {
+		Robot.drivetrain.turnPID.disable();
+		Robot.drivetrain.drive(0, 0, 0);
+	}
 
-    protected void interrupted() {
-    	Robot.drivetrain.turnPID.disable();
-    	Robot.drivetrain.drive(0, 0, 0);
-    }
+	@Override
+	protected void interrupted() {
+		Robot.drivetrain.turnPID.disable();
+		Robot.drivetrain.drive(0, 0, 0);
+	}
 }

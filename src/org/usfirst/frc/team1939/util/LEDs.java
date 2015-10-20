@@ -10,38 +10,37 @@ public class LEDs implements Runnable {
 
 	private SerialPort port;
 
-	public LEDs() {
-		try {
-			this.port = new SerialPort(9600, SerialPort.Port.kUSB);
-		} catch (Exception e) {
-			e.printStackTrace();
-			DriverStation.reportError("Couldn't Find Arduino", false);
-		}
-	}
-
 	@Override
 	public void run() {
-		while (this.port != null) {
+		while (true) {
+			if (this.port == null) {
+				try {
+					this.port = new SerialPort(9600, SerialPort.Port.kUSB);
+				} catch (Exception e) {
+					e.printStackTrace();
+					DriverStation.reportError("Couldn't Find Arduino: " + System.currentTimeMillis(), false);
+				}
+			} else {
+				byte b = 0;
+				if (Robot.robot.isEnabled())
+					b = writeBit(b, 1, 0);
+				if (DriverStation.getInstance().isDSAttached())
+					b = writeBit(b, 1, 1);
+				if (DriverStation.getInstance().getAlliance() == Alliance.Blue)
+					b = writeBit(b, 1, 2);
+				if (Robot.robot.isAutonomous())
+					b = writeBit(b, 1, 3);
 
-			byte b = 0;
-			if (Robot.robot.isEnabled())
-				b = writeBit(b, 1, 0);
-			if (DriverStation.getInstance().isDSAttached())
-				b = writeBit(b, 1, 1);
-			if (DriverStation.getInstance().getAlliance() == Alliance.Blue)
-				b = writeBit(b, 1, 2);
-			if (Robot.robot.isAutonomous())
-				b = writeBit(b, 1, 3);
+				byte[] buffer = new byte[1];
+				buffer[0] = b;
+				this.port.write(buffer, 1);
+				this.port.flush();
 
-			byte[] buffer = new byte[1];
-			buffer[0] = b;
-			this.port.write(buffer, 1);
-			this.port.flush();
-
-			try {
-				Thread.sleep(50);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+				try {
+					Thread.sleep(50);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

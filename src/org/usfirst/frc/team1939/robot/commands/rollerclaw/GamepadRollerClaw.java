@@ -33,6 +33,8 @@ public class GamepadRollerClaw extends Command {
 				Robot.rollerClaw.move(0.3);
 			} else if (close && !open) {
 				Robot.rollerClaw.move(-0.3);
+			} else {
+				Robot.rollerClaw.move(0);
 			}
 		}
 		Robot.rollerClaw.spin(-Robot.oi.gamepad.getRightY() * 0.85, -Robot.oi.gamepad.getRightX() * 0.85);

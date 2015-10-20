@@ -66,7 +66,7 @@ public class DriveWithJoystick extends Command {
 			multi = .5;
 
 		// Drive
-		Robot.drivetrain.drive(x, y, z, multi);
+		Robot.drivetrain.driveWithGyro(x, y, z, multi);
 	}
 
 	@Override
