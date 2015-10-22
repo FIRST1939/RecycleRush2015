@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 public class Drivetrain extends Subsystem {
 
+	private static final double RAMP_RATE = 1;
+
 	public CANTalon frontLeft = new CANTalon(RobotMap.talonFrontLeft);
 	public CANTalon rearLeft = new CANTalon(RobotMap.talonRearLeft);
 	public CANTalon frontRight = new CANTalon(RobotMap.talonFrontRight);
@@ -23,9 +25,13 @@ public class Drivetrain extends Subsystem {
 
 	{
 		this.frontLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		this.frontLeft.setVoltageRampRate(RAMP_RATE);
 		this.rearLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		this.rearLeft.setVoltageRampRate(RAMP_RATE);
 		this.frontRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		this.frontRight.setVoltageRampRate(RAMP_RATE);
 		this.rearRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		this.rearRight.setVoltageRampRate(RAMP_RATE);
 
 		this.frontRight.reverseSensor(true);
 		this.rearRight.reverseSensor(true);
