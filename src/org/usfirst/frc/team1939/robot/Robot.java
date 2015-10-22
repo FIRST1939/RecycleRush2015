@@ -63,8 +63,8 @@ public class Robot extends IterativeRobot {
 			SmartDashboard.putData(c);
 		SmartDashboard.putData(Scheduler.getInstance());
 
-		rotateMode.addDefault("Left Rotate", "Left");
-		rotateMode.addObject("Right Rotate", "Right");
+		rotateMode.addDefault("Right Rotate", "Right");
+		rotateMode.addObject("Left Rotate", "Left");
 		SmartDashboard.putData("Rotate Joystick", rotateMode);
 
 		forwardMode.addDefault("Left Forward", "Left");
