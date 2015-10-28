@@ -24,7 +24,7 @@ public class Turn90 extends Command {
 		} else if (this.d == Direction.RIGHT) {
 			degrees = 90;
 		}
-		this.timer = new PIDTimer(() -> Robot.drivetrain.turnPID.getError(), 0, 5, 500);
+		this.timer = new PIDTimer(() -> Robot.drivetrain.getSpeed(), 0, 1, 500);
 		Robot.ahrs.reset();
 		Robot.drivetrain.turnPID.enable();
 		Robot.drivetrain.turnPID.setSetpoint(degrees);

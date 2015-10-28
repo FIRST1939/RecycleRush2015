@@ -6,45 +6,46 @@ import org.usfirst.frc.team1939.util.PIDTimer;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveByInches extends Command {
-	
+
 	private double inches;
 	private double speed;
 	private PIDTimer timer;
-	
-    public DriveByInches(double inches, double speed) {
-    	this.inches = inches;
-    	this.speed = speed;
-        requires(Robot.drivetrain);
-    }
 
-    protected void initialize() {
-    	Robot.drivetrain.setMoveMaxSpeed(speed);
-    	this.timer = new PIDTimer(()->Robot.drivetrain.getSpeed(), 0, 1, 500);
-    	Robot.drivetrain.resetEncoders();
-    	Robot.drivetrain.movePID.enable();
-    	Robot.drivetrain.movePID.setSetpoint(inches);
-    	
-    	Robot.ahrs.reset();
-    	Robot.drivetrain.turnPID.enable();
-    	Robot.drivetrain.turnPID.setSetpoint(0);
-    }
+	public DriveByInches(double inches, double speed) {
+		this.inches = inches;
+		this.speed = speed;
+		requires(Robot.drivetrain);
+	}
 
-    protected void execute() {
-    	Robot.drivetrain.drive(0, -Robot.drivetrain.movePID.get(), Robot.drivetrain.turnPID.get());
-    	timer.update();
-    }
+	@Override
+	protected void initialize() {
+		Robot.drivetrain.setMoveMaxSpeed(this.speed);
+		this.timer = new PIDTimer(() -> Robot.drivetrain.getSpeed(), 0, 1, 500);
+		Robot.drivetrain.resetEncoders();
+		Robot.drivetrain.movePID.enable();
+		Robot.drivetrain.movePID.setSetpoint(this.inches);
 
-    protected boolean isFinished() {
-        return timer.isDone();
-    }
+		Robot.ahrs.reset();
+	}
 
-    protected void end() {
-    	Robot.drivetrain.movePID.disable();
-    	Robot.drivetrain.turnPID.disable();
-    }
+	@Override
+	protected void execute() {
+		Robot.drivetrain.driveWithGyro(0, -Robot.drivetrain.movePID.get(), 0, 1.0);
+		this.timer.update();
+	}
 
-    protected void interrupted() {
-    	Robot.drivetrain.movePID.disable();
-    	Robot.drivetrain.turnPID.disable();
-    }
+	@Override
+	protected boolean isFinished() {
+		return this.timer.isDone();
+	}
+
+	@Override
+	protected void end() {
+		Robot.drivetrain.movePID.disable();
+	}
+
+	@Override
+	protected void interrupted() {
+		Robot.drivetrain.movePID.disable();
+	}
 }

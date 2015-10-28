@@ -8,34 +8,39 @@ public class StrafeByTime extends Command {
 
 	public static final double RIGHT = 1.0;
 	public static final double LEFT = -RIGHT;
-	
+
 	private double time;
 	private double speed;
-	
-    public StrafeByTime(double time, double speed) {
-    	requires(Robot.drivetrain);
-    	this.time = time;
-    	this.speed = speed;
-    }
 
-    protected void initialize() {
-    	this.setTimeout(time);
-    	Robot.ahrs.reset();
-    }
+	public StrafeByTime(double time, double speed) {
+		requires(Robot.drivetrain);
+		this.time = time;
+		this.speed = speed;
+	}
 
-    protected void execute() {
-    	Robot.drivetrain.drive(speed, 0, 0);
-    }
+	@Override
+	protected void initialize() {
+		setTimeout(this.time);
+		Robot.ahrs.reset();
+	}
 
-    protected boolean isFinished() {
-        return this.isTimedOut();
-    }
+	@Override
+	protected void execute() {
+		Robot.drivetrain.driveWithGyro(this.speed, 0, 0, 1.0);
+	}
 
-    protected void end() {
-    	Robot.drivetrain.drive(0, 0, 0);
-    }
+	@Override
+	protected boolean isFinished() {
+		return isTimedOut();
+	}
 
-    protected void interrupted() {
-    	Robot.drivetrain.drive(0, 0, 0);
-    }
+	@Override
+	protected void end() {
+		Robot.drivetrain.drive(0, 0, 0);
+	}
+
+	@Override
+	protected void interrupted() {
+		Robot.drivetrain.drive(0, 0, 0);
+	}
 }

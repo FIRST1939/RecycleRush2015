@@ -80,7 +80,11 @@ public class Drivetrain extends Subsystem {
 	private PIDSource turnSource = new PIDSource() {
 		@Override
 		public double pidGet() {
-			return Robot.ahrs.getAngle();
+			double angle = Robot.ahrs.getAngle();
+			if (angle > 180)
+				return angle - 360;
+			else
+				return angle;
 		}
 	};
 	private PIDOutput turnOutput = new PIDOutput() {
@@ -92,8 +96,7 @@ public class Drivetrain extends Subsystem {
 	public PIDController turnPID = new PIDController(turnP, turnI, turnD, this.turnSource, this.turnOutput);
 
 	{
-		this.turnPID.setInputRange(0, 360);
-		this.turnPID.setContinuous();
+		this.turnPID.setInputRange(-180, 180);
 		this.turnPID.setOutputRange(-turnMaxSpeed, turnMaxSpeed);
 		LiveWindow.addActuator("Drivetrain", "turn PID", this.turnPID);
 	}
