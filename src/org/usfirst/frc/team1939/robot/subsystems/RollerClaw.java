@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class RollerClaw extends Subsystem {
 
 	public static final int OPEN = 0;
-	public static final int CLOSED = 150;
+	public static final int CLOSED = 175;
 
 	private static final double P = 0.04;
 	private static final double I = 0;

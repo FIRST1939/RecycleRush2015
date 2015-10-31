@@ -14,6 +14,7 @@ public class DriveWithJoystick extends Command {
 
 	@Override
 	protected void initialize() {
+		Robot.ahrs.reset();
 	}
 
 	@Override

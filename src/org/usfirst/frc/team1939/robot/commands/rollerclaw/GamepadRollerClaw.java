@@ -19,8 +19,8 @@ public class GamepadRollerClaw extends Command {
 
 	@Override
 	protected void execute() {
-		boolean open = Robot.oi.gamepad.leftTrigger.get();
-		boolean close = Robot.oi.gamepad.leftButton.get();
+		boolean open = Robot.oi.gamepad.rightTrigger.get();
+		boolean close = Robot.oi.gamepad.leftTrigger.get();
 		if (open && !close) {
 			Robot.rollerClaw.controller.setSetpoint(RollerClaw.OPEN);
 		} else if (close && !open) {
